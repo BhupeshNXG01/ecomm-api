@@ -1,0 +1,390 @@
+openapi: 3.0.1
+info:
+  title: NXG Ecommerce API
+  description: 'This is a NXG Ecommerce module. You can find out more about NXG Ecommerce at [http://nxgecommerce.in](http://nxgecommerce.io) or on [www.nxgecommerce.in, #nxgecommerce].'
+  termsOfService: http://nxgecommerce/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about NXG Ecommerce
+  url: http://swagger.io
+servers:
+  - url: https://localhost:8080/nxgecommerce/api/v1
+  - url: http://localhost:8080/nxgecommerce/api/v1
+tags:
+  - name: NXG Ecommerce API
+    description: Everything about NXG Ecommerce
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /category:
+    post:
+      tags:
+        - Category Information
+      summary: Adding a new category
+      requestBody:
+        description: category details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categories'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - Category Information
+      summary:  Getting all categories details
+      responses:
+        '200':
+          description:  A list of all categories details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Categories'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /category/{id}:
+    get:
+      tags:
+        - Category Information
+      summary: Getting Category details by id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a category details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Categories'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - Category Information
+        summary: Editing category details
+        parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: Category details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Categories'
+          required: true      
+        responses:
+          '200':
+            description: A list of a category details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/Categories'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Category Information
+      summary: Delete a category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body   
+  
+  /customer:
+    post:
+      tags:
+        - Customer Information
+      summary: Adding a new customer
+      requestBody:
+        description: customer details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerDetails'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - Customer Information
+      summary:  Getting all customer details
+      responses:
+        '200':
+          description:  A list of all customer details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetails'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /customer/{id}:
+    get:
+      tags:
+        - Customer Information
+      summary: Getting Customer details by id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a customer's details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetails'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - Customer Information
+        summary: Editing customer details
+        parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: Customer details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDetails'
+          required: true      
+        responses:
+          '200':
+            description: A list of a customer's details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/CustomerDetails'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Customer Information
+      summary: Delete a customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+  
+components:
+  schemas:
+    Categories:
+      type: object
+      required:
+        - name
+        - position
+        - image
+        - categoryHandel
+        - status
+      properties:
+        id:
+          type: integer
+          maxLength: 11
+        name:
+          type: string
+          maxLength: 200
+        position:
+          type: integer
+          maxLength: 4
+        image:
+          type: string
+        categoryHandel:
+          type: string
+          maxLength: 200
+        status: 
+          type: integer
+          maxLength: 11
+        deleteStatus:
+          type: integer
+          maxLength: 11
+     
+    CustomerDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          maxLength: 11
+        name:
+          type: string
+          maxLength: 120
+        email:
+          type: string
+          maxLength: 250
+        mobile: 
+          type: string
+          maxLength: 10
+        password: 
+          type: string
+          maxLength: 120
+        currencyId:
+          type: integer
+          maxLength: 11
+        isGuest: 
+          type: integer
+          maxLength: 1
