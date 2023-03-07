@@ -10,11 +10,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * CustomerDetails
+ * CustomerDetailsRes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-07T13:41:37.120333200+05:30[Asia/Calcutta]")
 
-public class CustomerDetails   {
+public class CustomerDetailsRes   {
   @JsonProperty("id")
   private Integer id;
 
@@ -27,16 +27,13 @@ public class CustomerDetails   {
   @JsonProperty("mobile")
   private String mobile;
 
-  @JsonProperty("password")
-  private String password;
-
   @JsonProperty("currencyId")
   private Integer currencyId;
 
   @JsonProperty("isGuest")
   private Integer isGuest;
 
-  public CustomerDetails id(Integer id) {
+  public CustomerDetailsRes id(Integer id) {
     this.id = id;
     return this;
   }
@@ -45,8 +42,7 @@ public class CustomerDetails   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=11) 
   public Integer getId() {
@@ -57,7 +53,7 @@ public class CustomerDetails   {
     this.id = id;
   }
 
-  public CustomerDetails name(String name) {
+  public CustomerDetailsRes name(String name) {
     this.name = name;
     return this;
   }
@@ -66,8 +62,7 @@ public class CustomerDetails   {
    * Get name
    * @return name
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=120) 
   public String getName() {
@@ -78,7 +73,7 @@ public class CustomerDetails   {
     this.name = name;
   }
 
-  public CustomerDetails email(String email) {
+  public CustomerDetailsRes email(String email) {
     this.email = email;
     return this;
   }
@@ -87,8 +82,7 @@ public class CustomerDetails   {
    * Get email
    * @return email
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=250) 
   public String getEmail() {
@@ -99,7 +93,7 @@ public class CustomerDetails   {
     this.email = email;
   }
 
-  public CustomerDetails mobile(String mobile) {
+  public CustomerDetailsRes mobile(String mobile) {
     this.mobile = mobile;
     return this;
   }
@@ -108,8 +102,7 @@ public class CustomerDetails   {
    * Get mobile
    * @return mobile
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=10) 
   public String getMobile() {
@@ -120,27 +113,7 @@ public class CustomerDetails   {
     this.mobile = mobile;
   }
 
-  public CustomerDetails password(String password) {
-    this.password = password;
-    return this;
-  }
-
-  /**
-   * Get password
-   * @return password
-  */
-  @ApiModelProperty(value = "")
-
-@Size(max=120) 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public CustomerDetails currencyId(Integer currencyId) {
+  public CustomerDetailsRes currencyId(Integer currencyId) {
     this.currencyId = currencyId;
     return this;
   }
@@ -160,7 +133,7 @@ public class CustomerDetails   {
     this.currencyId = currencyId;
   }
 
-  public CustomerDetails isGuest(Integer isGuest) {
+  public CustomerDetailsRes isGuest(Integer isGuest) {
     this.isGuest = isGuest;
     return this;
   }
@@ -169,8 +142,7 @@ public class CustomerDetails   {
    * Get isGuest
    * @return isGuest
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=1) 
   public Integer getIsGuest() {
@@ -190,31 +162,29 @@ public class CustomerDetails   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CustomerDetails customerDetails = (CustomerDetails) o;
-    return Objects.equals(this.id, customerDetails.id) &&
-        Objects.equals(this.name, customerDetails.name) &&
-        Objects.equals(this.email, customerDetails.email) &&
-        Objects.equals(this.mobile, customerDetails.mobile) &&
-        Objects.equals(this.password, customerDetails.password) &&
-        Objects.equals(this.currencyId, customerDetails.currencyId) &&
-        Objects.equals(this.isGuest, customerDetails.isGuest);
+    CustomerDetailsRes customerDetailsRes = (CustomerDetailsRes) o;
+    return Objects.equals(this.id, customerDetailsRes.id) &&
+        Objects.equals(this.name, customerDetailsRes.name) &&
+        Objects.equals(this.email, customerDetailsRes.email) &&
+        Objects.equals(this.mobile, customerDetailsRes.mobile) &&
+        Objects.equals(this.currencyId, customerDetailsRes.currencyId) &&
+        Objects.equals(this.isGuest, customerDetailsRes.isGuest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, mobile, password, currencyId, isGuest);
+    return Objects.hash(id, name, email, mobile, currencyId, isGuest);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CustomerDetails {\n");
+    sb.append("class CustomerDetailsRes {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    mobile: ").append(toIndentedString(mobile)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    currencyId: ").append(toIndentedString(currencyId)).append("\n");
     sb.append("    isGuest: ").append(toIndentedString(isGuest)).append("\n");
     sb.append("}");

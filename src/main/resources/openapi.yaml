@@ -366,6 +366,12 @@ components:
      
     CustomerDetails:
       type: object
+      required:
+        - id
+        - name
+        - email
+        - mobile
+        - isGuest
       properties:
         id:
           type: integer
@@ -388,3 +394,25 @@ components:
         isGuest: 
           type: integer
           maxLength: 1
+          
+    CustomerDetailsRes:
+      type: object
+      properties:
+        id:
+          type: integer
+          maxLength: 11
+        name:
+          type: string
+          maxLength: 120
+        email:
+          type: string
+          maxLength: 250
+        mobile: 
+          type: string
+          maxLength: 10
+        currencyId:
+          type: integer
+          maxLength: 11
+        isGuest: 
+          type: integer
+          maxLength: 1      

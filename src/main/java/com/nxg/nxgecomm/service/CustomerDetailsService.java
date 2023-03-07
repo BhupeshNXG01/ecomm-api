@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.nxg.nxgecomm.api.model.CustomerDetails;
+import com.nxg.nxgecomm.api.model.CustomerDetailsRes;
 import com.nxg.nxgecomm.datamodel.CustomerDetailsData;
 import com.nxg.nxgecomm.repository.CustomerDetailsRepository;
 
@@ -24,7 +25,20 @@ public class CustomerDetailsService {
 	@Autowired
 	CustomerDetailsRepository customerDetailsRepository;
 	
-    public CustomerDetails createCustomerDetails(CustomerDetails customerDetails) throws Exception{
+	private CustomerDetailsRes setResData(CustomerDetailsData customerDetailsData) {
+		CustomerDetailsRes customerDetailsRes = new CustomerDetailsRes();
+		
+		customerDetailsRes.setId(customerDetailsData.getId());
+		customerDetailsRes.setName(customerDetailsData.getName());
+		customerDetailsRes.setEmail(customerDetailsData.getEmail());
+		customerDetailsRes.setMobile(customerDetailsData.getMobile());
+		customerDetailsRes.setCurrencyId(customerDetailsData.getCurrencyId());
+		customerDetailsRes.setIsGuest(customerDetailsData.getIsGuest());
+	    return customerDetailsRes;
+	
+	}
+	
+    public CustomerDetailsRes createCustomerDetails(CustomerDetails customerDetails) throws Exception{
     	
     	 customerDetailsData = new CustomerDetailsData();
     
@@ -39,19 +53,27 @@ public class CustomerDetailsService {
     		customerDetailsData.setStatus(1);
     		
     		customerDetailsData = customerDetailsRepository.save(customerDetailsData);
-    		CustomerDetails customerDetailsRes = new CustomerDetails();
+    		System.out.println("This is Id === " + customerDetailsData.getId());
+//    		CustomerDetailsRes customerDetailsRes = new CustomerDetailsRes();
+//    		
+//    		customerDetailsRes.setId(customerDetailsData.getId());
+//    		customerDetailsRes.setName(customerDetailsData.getName());
+//    		customerDetailsRes.setEmail(customerDetailsData.getEmail());
+//    		customerDetailsRes.setMobile(customerDetailsData.getMobile());
+//    		customerDetailsRes.setCurrencyId(customerDetailsData.getCurrencyId());
+//    		customerDetailsRes.setIsGuest(customerDetailsData.getIsGuest());
+//    	    return customerDetailsRes;
     		
-    		customerDetailsRes.setId(customerDetailsData.getId());
-    	    return customerDetailsRes;
-    		
+    		CustomerDetailsRes customerDetailsRes = this.setResData(customerDetailsData);
+    		return customerDetailsRes;
     	}catch(ResponseStatusException ex) {
     		throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
     	}
     	
     }
 	
-    public List<CustomerDetails> getAllCustomerDetails() throws ResponseStatusException {
-    	List<CustomerDetails> customerDetailsList = new ArrayList<CustomerDetails>();
+    public List<CustomerDetailsRes> getAllCustomerDetails() throws ResponseStatusException {
+    	List<CustomerDetailsRes> customerDetailsList = new ArrayList<CustomerDetailsRes>();
     	
     	try {
     		
@@ -60,12 +82,11 @@ public class CustomerDetailsService {
     		if(CustomerDetailsDataList.size() > 0) {
         		
         		for(CustomerDetailsData customerDetailsData : CustomerDetailsDataList) {
-        			CustomerDetails customerDetails = new CustomerDetails();
+        			CustomerDetailsRes customerDetails = new CustomerDetailsRes();
         			
         			customerDetails.setName(customerDetailsData.getName());
         			customerDetails.setEmail(customerDetailsData.getEmail());
         			customerDetails.setMobile(customerDetailsData.getMobile());
-        			customerDetails.setPassword(customerDetailsData.getPassword());
         			customerDetails.setIsGuest(customerDetailsData.getIsGuest());
         			customerDetails.setCurrencyId(customerDetailsData.getCurrencyId());
         			customerDetails.setId(customerDetailsData.getId());
@@ -86,19 +107,18 @@ public class CustomerDetailsService {
     }
     
     
-    public CustomerDetails getCustomerDetailsById(int id) {
+    public CustomerDetailsRes getCustomerDetailsById(int id) {
     	
     	try {
     		 customerDetailsDataOp = customerDetailsRepository.findByIdAndStatus(id,1);
     	
     		 if(customerDetailsDataOp.isPresent()) {
     			 CustomerDetailsData customerDetailsData = customerDetailsDataOp.get();
-    			 CustomerDetails customerDetails = new CustomerDetails();
+    			 CustomerDetailsRes customerDetails = new CustomerDetailsRes();
     			 
     			 customerDetails.setName(customerDetailsData.getName());
     			 customerDetails.setEmail(customerDetailsData.getEmail());
     			 customerDetails.setMobile(customerDetailsData.getMobile());
-    			 customerDetails.setPassword(customerDetailsData.getPassword());
     			 customerDetails.setIsGuest(customerDetailsData.getIsGuest());
     			 customerDetails.setCurrencyId(customerDetailsData.getCurrencyId());
     			 customerDetails.setId(customerDetailsData.getId());
@@ -115,7 +135,7 @@ public class CustomerDetailsService {
     }
     
    
-   public CustomerDetails updateCustomerDetails(int id,CustomerDetails customerDetails) throws Exception{
+   public CustomerDetailsRes updateCustomerDetails(int id,CustomerDetails customerDetails) throws Exception{
     	
    	 customerDetailsData = new CustomerDetailsData();
    
@@ -131,9 +151,7 @@ public class CustomerDetailsService {
    			customerDetailsData.setCurrencyId(customerDetails.getCurrencyId());
    			
    			customerDetailsData = customerDetailsRepository.save(customerDetailsData);
-   			CustomerDetails customerDetailsRes = new CustomerDetails();
-   			
-   			customerDetailsRes.setId(customerDetailsData.getId());
+   			CustomerDetailsRes customerDetailsRes = this.setResData(customerDetailsData);
    			return customerDetailsRes;
    		}else {
    			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");

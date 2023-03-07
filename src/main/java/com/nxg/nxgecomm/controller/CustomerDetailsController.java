@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.nxg.nxgecomm.api.model.CustomerDetails;
+import com.nxg.nxgecomm.api.model.CustomerDetailsRes;
 import com.nxg.nxgecomm.service.CustomerDetailsService;
 
 @RestController
@@ -27,8 +28,8 @@ public class CustomerDetailsController {
 	ResponseEntity<Object> addCustomerDetails(@RequestBody CustomerDetails customerDetails) throws Exception {
 		try {
 			
-			CustomerDetails customerDetailsRes = customerDetailsService.createCustomerDetails(customerDetails);
-			return new ResponseEntity<>(customerDetails,HttpStatus.OK);
+			CustomerDetailsRes customerDetailsRes = customerDetailsService.createCustomerDetails(customerDetails);
+			return new ResponseEntity<>(customerDetailsRes,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
 		}
@@ -39,7 +40,7 @@ public class CustomerDetailsController {
 	ResponseEntity<Object> getCustomerDetails() {
 		try {
 			
-			List<CustomerDetails> customerDetailsList = customerDetailsService.getAllCustomerDetails();
+			List<CustomerDetailsRes> customerDetailsList = customerDetailsService.getAllCustomerDetails();
 			return new ResponseEntity<>(customerDetailsList,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
@@ -51,7 +52,7 @@ public class CustomerDetailsController {
 	ResponseEntity<Object> getCustomerDetailsById(@PathVariable("id") int id) {
 		try {
 			
-			CustomerDetails customerDetails = customerDetailsService.getCustomerDetailsById(id);
+			CustomerDetailsRes customerDetails = customerDetailsService.getCustomerDetailsById(id);
 			return new ResponseEntity<>(customerDetails,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
@@ -63,8 +64,8 @@ public class CustomerDetailsController {
 	ResponseEntity<Object> editCustomerDetails(@PathVariable("id")int id, @RequestBody CustomerDetails customerDetails) throws Exception {
 		try {
 			
-			CustomerDetails customerDetailsRes = customerDetailsService.updateCustomerDetails(id,customerDetails);
-			return new ResponseEntity<>(customerDetails,HttpStatus.OK);
+			CustomerDetailsRes customerDetailsRes = customerDetailsService.updateCustomerDetails(id,customerDetails);
+			return new ResponseEntity<>(customerDetailsRes, HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
 		}
