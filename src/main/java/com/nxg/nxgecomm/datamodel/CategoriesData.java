@@ -11,7 +11,7 @@ public class CategoriesData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
@@ -24,14 +24,11 @@ public class CategoriesData implements Serializable {
 	@Column(name = "image")
 	private String image;
 	
-	@Column(name = "category_handle")
+	@Column(name = "category_handel")
 	private String categoryHandle;
 	
 	@Column(name = "status")
 	private int status;
-	
-	@Column(name = "delete_status")
-	private int deleteStatus;
 
 	public int getId() {
 		return id;
@@ -81,13 +78,7 @@ public class CategoriesData implements Serializable {
 		this.status = status;
 	}
 
-	public int getDeleteStatus() {
-		return deleteStatus;
-	}
-
-	public void setDeleteStatus(int deleteStatus) {
-		this.deleteStatus = deleteStatus;
-	}
+	
 	
 	
 }

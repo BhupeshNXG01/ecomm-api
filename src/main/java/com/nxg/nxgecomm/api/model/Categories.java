@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * Categories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-07T13:41:37.120333200+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-07T16:51:42.963673600+05:30[Asia/Calcutta]")
 
 public class Categories   {
   @JsonProperty("id")
@@ -29,12 +29,6 @@ public class Categories   {
 
   @JsonProperty("categoryHandel")
   private String categoryHandel;
-
-  @JsonProperty("status")
-  private Integer status;
-
-  @JsonProperty("deleteStatus")
-  private Integer deleteStatus;
 
   public Categories id(Integer id) {
     this.id = id;
@@ -140,47 +134,6 @@ public class Categories   {
     this.categoryHandel = categoryHandel;
   }
 
-  public Categories status(Integer status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=11) 
-  public Integer getStatus() {
-    return status;
-  }
-
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
-
-  public Categories deleteStatus(Integer deleteStatus) {
-    this.deleteStatus = deleteStatus;
-    return this;
-  }
-
-  /**
-   * Get deleteStatus
-   * @return deleteStatus
-  */
-  @ApiModelProperty(value = "")
-
-@Size(max=11) 
-  public Integer getDeleteStatus() {
-    return deleteStatus;
-  }
-
-  public void setDeleteStatus(Integer deleteStatus) {
-    this.deleteStatus = deleteStatus;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -195,14 +148,12 @@ public class Categories   {
         Objects.equals(this.name, categories.name) &&
         Objects.equals(this.position, categories.position) &&
         Objects.equals(this.image, categories.image) &&
-        Objects.equals(this.categoryHandel, categories.categoryHandel) &&
-        Objects.equals(this.status, categories.status) &&
-        Objects.equals(this.deleteStatus, categories.deleteStatus);
+        Objects.equals(this.categoryHandel, categories.categoryHandel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, position, image, categoryHandel, status, deleteStatus);
+    return Objects.hash(id, name, position, image, categoryHandel);
   }
 
   @Override
@@ -215,8 +166,6 @@ public class Categories   {
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    categoryHandel: ").append(toIndentedString(categoryHandel)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    deleteStatus: ").append(toIndentedString(deleteStatus)).append("\n");
     sb.append("}");
     return sb.toString();
   }

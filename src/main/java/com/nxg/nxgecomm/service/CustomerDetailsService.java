@@ -54,15 +54,6 @@ public class CustomerDetailsService {
     		
     		customerDetailsData = customerDetailsRepository.save(customerDetailsData);
     		System.out.println("This is Id === " + customerDetailsData.getId());
-//    		CustomerDetailsRes customerDetailsRes = new CustomerDetailsRes();
-//    		
-//    		customerDetailsRes.setId(customerDetailsData.getId());
-//    		customerDetailsRes.setName(customerDetailsData.getName());
-//    		customerDetailsRes.setEmail(customerDetailsData.getEmail());
-//    		customerDetailsRes.setMobile(customerDetailsData.getMobile());
-//    		customerDetailsRes.setCurrencyId(customerDetailsData.getCurrencyId());
-//    		customerDetailsRes.setIsGuest(customerDetailsData.getIsGuest());
-//    	    return customerDetailsRes;
     		
     		CustomerDetailsRes customerDetailsRes = this.setResData(customerDetailsData);
     		return customerDetailsRes;

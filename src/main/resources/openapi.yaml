@@ -341,7 +341,6 @@ components:
         - position
         - image
         - categoryHandel
-        - status
       properties:
         id:
           type: integer
@@ -357,12 +356,6 @@ components:
         categoryHandel:
           type: string
           maxLength: 200
-        status: 
-          type: integer
-          maxLength: 11
-        deleteStatus:
-          type: integer
-          maxLength: 11
      
     CustomerDetails:
       type: object
