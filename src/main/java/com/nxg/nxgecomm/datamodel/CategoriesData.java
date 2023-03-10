@@ -79,6 +79,4 @@ public class CategoriesData implements Serializable {
 	}
 
 	
-	
-	
 }

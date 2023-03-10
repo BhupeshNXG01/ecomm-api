@@ -331,7 +331,162 @@ paths:
           description: Bad Gatway
           content: {}               
       x-codegen-request-body-name: body
-  
+      
+  /product:
+    post:
+      tags:
+        - Product Information
+      summary: Adding a new product
+      requestBody:
+        description: product details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - Product Information
+      summary:  Getting all products details
+      responses:
+        '200':
+          description:  A list of all products details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /product/{productId}:
+    get:
+      tags:
+        - Product Information
+      summary: Getting product details by id
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a product details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - Product Information
+        summary: Editing product details
+        parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: Product details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+          required: true      
+        responses:
+          '200':
+            description: A list of a product details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/Products'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Product Information
+      summary: Delete a product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body    
+      
 components:
   schemas:
     Categories:
@@ -409,3 +564,72 @@ components:
         isGuest: 
           type: integer
           maxLength: 1      
+          
+    Products:
+      type: object
+      required:
+        - productId
+        - categoryId
+        - title
+        - price
+        - cPrice
+        - taxPercent
+        - qty
+        - sizeType
+        - description
+        - skuCode
+        - barcode
+        - isVariants
+        - productUrl
+        - searchTerms
+        - seoTitle
+        - meta
+        - keyword
+      properties:
+        productId:
+          type: integer
+          maxLength: 11
+        categoryId:
+          type: integer
+          maxLength: 11
+        title:
+          type: string
+          maxLength: 200
+        price:
+          type: number
+          multipleOf: 0.01
+        cPrice:
+          type: number
+          multipleOf: 0.01
+        taxPercent:
+          type: number
+          multipleOf: 0.01
+        qty:
+          type: integer
+          maxLength: 10
+        sizeType:
+          type: integer
+          maxLength: 1
+        description:
+          type: string
+        skuCode:
+          type: string
+        barcode:
+          type: string
+        isVariants:
+          type: integer
+          maxLength: 11
+        productUrl:
+          type: string
+        searchTerms:
+          type: string
+        seoTitle:
+          type: string
+          maxLength: 250
+        meta:
+          type: string
+          maxLength: 170
+        keyword:
+          type: string
+          maxLength: 200
+          
