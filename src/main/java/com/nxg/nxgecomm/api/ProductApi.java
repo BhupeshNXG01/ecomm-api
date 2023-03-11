@@ -5,7 +5,7 @@
  */
 package com.nxg.nxgecomm.api;
 
-import com.nxg.nxgecomm.api.model.Products;
+import com.nxg.nxgecomm.api.model.Product;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-10T13:58:41.564107300+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-11T18:40:56.382042300+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "product", description = "the product API")
@@ -47,9 +47,9 @@ public interface ProductApi {
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting all products details", nickname = "productGet", notes = "", response = Products.class, tags={ "Product Information", })
+    @ApiOperation(value = "Getting all products details", nickname = "productGet", notes = "", response = Product.class, tags={ "Product Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of all products details", response = Products.class),
+        @ApiResponse(code = 200, message = "A list of all products details", response = Product.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
@@ -58,12 +58,12 @@ public interface ProductApi {
     @RequestMapping(value = "/product",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Products> _productGet() {
+    default ResponseEntity<Product> _productGet() {
         return productGet();
     }
 
     // Override this method
-    default  ResponseEntity<Products> productGet() {
+    default  ResponseEntity<Product> productGet() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -98,12 +98,12 @@ public interface ProductApi {
     @RequestMapping(value = "/product",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Void> _productPost(@ApiParam(value = "product details that needs to be added" ,required=true )  @Valid @RequestBody Products body) {
+    default ResponseEntity<Void> _productPost(@ApiParam(value = "product details that needs to be added" ,required=true )  @Valid @RequestBody Product body) {
         return productPost(body);
     }
 
     // Override this method
-    default  ResponseEntity<Void> productPost(Products body) {
+    default  ResponseEntity<Void> productPost(Product body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -150,9 +150,9 @@ public interface ProductApi {
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting product details by id", nickname = "productProductIdGet", notes = "", response = Products.class, tags={ "Product Information", })
+    @ApiOperation(value = "Getting product details by id", nickname = "productProductIdGet", notes = "", response = Product.class, tags={ "Product Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a product details", response = Products.class),
+        @ApiResponse(code = 200, message = "A list of a product details", response = Product.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
@@ -161,12 +161,12 @@ public interface ProductApi {
     @RequestMapping(value = "/product/{productId}",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Products> _productProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
+    default ResponseEntity<Product> _productProductIdGet(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId) {
         return productProductIdGet(productId);
     }
 
     // Override this method
-    default  ResponseEntity<Products> productProductIdGet(Integer productId) {
+    default  ResponseEntity<Product> productProductIdGet(Integer productId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -193,9 +193,9 @@ public interface ProductApi {
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Editing product details", nickname = "productProductIdPut", notes = "", response = Products.class, tags={ "Product Information", })
+    @ApiOperation(value = "Editing product details", nickname = "productProductIdPut", notes = "", response = Product.class, tags={ "Product Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a product details", response = Products.class),
+        @ApiResponse(code = 200, message = "A list of a product details", response = Product.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
@@ -205,12 +205,12 @@ public interface ProductApi {
         produces = { "applicantion/json" }, 
         consumes = { "applicantion/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Products> _productProductIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = "Product details that need to be added" ,required=true )  @Valid @RequestBody Products body) {
+    default ResponseEntity<Product> _productProductIdPut(@ApiParam(value = "",required=true) @PathVariable("productId") Integer productId,@ApiParam(value = "Product details that need to be added" ,required=true )  @Valid @RequestBody Product body) {
         return productProductIdPut(productId, body);
     }
 
     // Override this method
-    default  ResponseEntity<Products> productProductIdPut(Integer productId, Products body) {
+    default  ResponseEntity<Product> productProductIdPut(Integer productId, Product body) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {

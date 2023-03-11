@@ -342,7 +342,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Products'
+              $ref: '#/components/schemas/Product'
         required: true
       responses:
         '201':
@@ -371,7 +371,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Products'
+                $ref: '#/components/schemas/Product'
         '201':
           description: Successful
           content: {}
@@ -404,7 +404,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Products'
+                $ref: '#/components/schemas/Product'
         '201':
           description: Successful
           content: {}
@@ -435,7 +435,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Products'
+                $ref: '#/components/schemas/Product'
           required: true      
         responses:
           '200':
@@ -443,7 +443,7 @@ paths:
             content:
               applicantion/json:
                 schema:
-                  $ref: '#/components/schemas/Products'
+                  $ref: '#/components/schemas/Product'
           '201':
             description: Successful
             content: {}
@@ -565,7 +565,7 @@ components:
           type: integer
           maxLength: 1      
           
-    Products:
+    Product:
       type: object
       required:
         - productId
@@ -597,13 +597,13 @@ components:
           maxLength: 200
         price:
           type: number
-          multipleOf: 0.01
+          format: float
         cPrice:
           type: number
-          multipleOf: 0.01
+          format: float
         taxPercent:
           type: number
-          multipleOf: 0.01
+          format: float
         qty:
           type: integer
           maxLength: 10
@@ -632,4 +632,120 @@ components:
         keyword:
           type: string
           maxLength: 200
-          
+        productImage:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ProductImage"
+        productVariant:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ProductVariant"
+        
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          maxLength: 11
+        productId:
+          type: integer
+          maxLength: 11
+        imageName:
+          type: string
+          maxLength: 200
+        url:
+          type: string
+        isPrimary:
+          type: integer
+          maxLength: 1
+    
+    
+    ProductVariant:
+      type: object
+      properties:
+        productVariantId:
+          type: integer
+          maxLength: 11
+        productId:
+          type: integer
+          maxLength: 11
+        variantOptionValueId1:
+          type: integer
+          maxLength: 11
+        variantOptionValueId2:
+          type: integer
+          maxLength: 11
+        variantCombinationName:
+          type: string
+          maxLength: 120
+        price:
+          type: number
+          format: float
+        sku:
+          type: string
+          maxLength: 60
+        quantity:
+          type: integer
+          maxLength: 11
+        barcode:
+          type: string
+          maxLength: 120
+        isDefault:
+          type: boolean
+        userId:
+          type: integer
+          maxLength: 11
+    productVariantImage:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ProductVariantImage"
+    
+    ProductVariantImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          maxLength: 11
+        productVariantId:
+          type: integer
+          maxLength: 11
+        imgUrl:
+          type: string
+          maxLength: 500
+        isPrimary:
+          type: integer
+          maxLength: 1
+        variantOption:
+          type: array
+          items:
+            "$ref": "#/components/schemas/VariantOption"
+    
+    VariantOption:
+      type: object
+      properties:
+        variantOptionId:
+          type: integer
+          maxLength: 11
+        optionName:
+          type: string
+          maxLength: 48
+        userId: 
+          type: integer
+          maxLength: 11
+        variantOptionValue:
+          type: array
+          items:
+            "$ref": "#/components/schemas/VariantOptionValue"
+      
+    VariantOptionValue:
+      type: object
+      properties:
+        variantOptionValueId:
+          type: integer
+          maxLength: 11
+        variantOptionId:
+          type: integer
+          maxLength: 11
+        optionValue:
+          type: string
+          maxLength: 25
