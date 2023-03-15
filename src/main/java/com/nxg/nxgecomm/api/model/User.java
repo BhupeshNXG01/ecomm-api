@@ -10,33 +10,27 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * CustomerDetails
+ * User
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-15T16:43:38.218656100+05:30[Asia/Calcutta]")
 
-public class CustomerDetails   {
+public class User   {
   @JsonProperty("id")
   private Integer id;
-
-  @JsonProperty("name")
-  private String name;
 
   @JsonProperty("email")
   private String email;
 
+  @JsonProperty("username")
+  private String username;
+
   @JsonProperty("mobile")
-  private String mobile;
+  private Integer mobile;
 
   @JsonProperty("password")
   private String password;
 
-  @JsonProperty("currencyId")
-  private Integer currencyId;
-
-  @JsonProperty("isGuest")
-  private Integer isGuest;
-
-  public CustomerDetails id(Integer id) {
+  public User id(Integer id) {
     this.id = id;
     return this;
   }
@@ -57,28 +51,7 @@ public class CustomerDetails   {
     this.id = id;
   }
 
-  public CustomerDetails name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=120) 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public CustomerDetails email(String email) {
+  public User email(String email) {
     this.email = email;
     return this;
   }
@@ -90,7 +63,7 @@ public class CustomerDetails   {
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
-@Size(max=250) 
+@Size(max=200) 
   public String getEmail() {
     return email;
   }
@@ -99,7 +72,28 @@ public class CustomerDetails   {
     this.email = email;
   }
 
-  public CustomerDetails mobile(String mobile) {
+  public User username(String username) {
+    this.username = username;
+    return this;
+  }
+
+  /**
+   * Get username
+   * @return username
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+@Size(max=100) 
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public User mobile(Integer mobile) {
     this.mobile = mobile;
     return this;
   }
@@ -112,15 +106,15 @@ public class CustomerDetails   {
   @NotNull
 
 @Size(max=10) 
-  public String getMobile() {
+  public Integer getMobile() {
     return mobile;
   }
 
-  public void setMobile(String mobile) {
+  public void setMobile(Integer mobile) {
     this.mobile = mobile;
   }
 
-  public CustomerDetails password(String password) {
+  public User password(String password) {
     this.password = password;
     return this;
   }
@@ -129,56 +123,16 @@ public class CustomerDetails   {
    * Get password
    * @return password
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
-@Size(max=120) 
+@Size(max=200) 
   public String getPassword() {
     return password;
   }
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public CustomerDetails currencyId(Integer currencyId) {
-    this.currencyId = currencyId;
-    return this;
-  }
-
-  /**
-   * Get currencyId
-   * @return currencyId
-  */
-  @ApiModelProperty(value = "")
-
-@Size(max=11) 
-  public Integer getCurrencyId() {
-    return currencyId;
-  }
-
-  public void setCurrencyId(Integer currencyId) {
-    this.currencyId = currencyId;
-  }
-
-  public CustomerDetails isGuest(Integer isGuest) {
-    this.isGuest = isGuest;
-    return this;
-  }
-
-  /**
-   * Get isGuest
-   * @return isGuest
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=1) 
-  public Integer getIsGuest() {
-    return isGuest;
-  }
-
-  public void setIsGuest(Integer isGuest) {
-    this.isGuest = isGuest;
   }
 
 
@@ -190,33 +144,29 @@ public class CustomerDetails   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CustomerDetails customerDetails = (CustomerDetails) o;
-    return Objects.equals(this.id, customerDetails.id) &&
-        Objects.equals(this.name, customerDetails.name) &&
-        Objects.equals(this.email, customerDetails.email) &&
-        Objects.equals(this.mobile, customerDetails.mobile) &&
-        Objects.equals(this.password, customerDetails.password) &&
-        Objects.equals(this.currencyId, customerDetails.currencyId) &&
-        Objects.equals(this.isGuest, customerDetails.isGuest);
+    User user = (User) o;
+    return Objects.equals(this.id, user.id) &&
+        Objects.equals(this.email, user.email) &&
+        Objects.equals(this.username, user.username) &&
+        Objects.equals(this.mobile, user.mobile) &&
+        Objects.equals(this.password, user.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, mobile, password, currencyId, isGuest);
+    return Objects.hash(id, email, username, mobile, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CustomerDetails {\n");
+    sb.append("class User {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    mobile: ").append(toIndentedString(mobile)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
-    sb.append("    currencyId: ").append(toIndentedString(currencyId)).append("\n");
-    sb.append("    isGuest: ").append(toIndentedString(isGuest)).append("\n");
     sb.append("}");
     return sb.toString();
   }

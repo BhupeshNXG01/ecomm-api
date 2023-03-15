@@ -5,7 +5,7 @@
  */
 package com.nxg.nxgecomm.api;
 
-import com.nxg.nxgecomm.api.model.Categories;
+import com.nxg.nxgecomm.api.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,40 +30,40 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-15T16:43:38.218656100+05:30[Asia/Calcutta]")
 
 @Validated
-@Api(value = "category", description = "the category API")
-public interface CategoryApi {
+@Api(value = "user", description = "the user API")
+public interface UserApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /category : Getting all categories details
+     * GET /user : Getting all user details
      *
-     * @return A list of all categories details (status code 200)
+     * @return A list of all user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting all categories details", nickname = "categoryGet", notes = "", response = Categories.class, tags={ "Category Information", })
+    @ApiOperation(value = "Getting all user details", nickname = "userGet", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of all categories details", response = Categories.class),
+        @ApiResponse(code = 200, message = "A list of all user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/category",
+    @RequestMapping(value = "/user",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Categories> _categoryGet() {
-        return categoryGet();
+    default ResponseEntity<User> _userGet() {
+        return userGet();
     }
 
     // Override this method
-    default  ResponseEntity<Categories> categoryGet() {
+    default  ResponseEntity<User> userGet() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -79,63 +79,33 @@ public interface CategoryApi {
 
 
     /**
-     * DELETE /category/{id} : Delete a category
+     * GET /user/{id} : Getting user details by id
      *
      * @param id  (required)
-     * @return Successful (status code 201)
-     *         or Bad request input (status code 400)
-     *         or Data not found (status code 404)
-     *         or Invalid input (status code 500)
-     *         or Bad Gatway (status code 502)
-     */
-    @ApiOperation(value = "Delete a category", nickname = "categoryIdDelete", notes = "", tags={ "Category Information", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Successful"),
-        @ApiResponse(code = 400, message = "Bad request input"),
-        @ApiResponse(code = 404, message = "Data not found"),
-        @ApiResponse(code = 500, message = "Invalid input"),
-        @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/category/{id}",
-        method = RequestMethod.DELETE)
-    default ResponseEntity<Void> _categoryIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
-        return categoryIdDelete(id);
-    }
-
-    // Override this method
-    default  ResponseEntity<Void> categoryIdDelete(Integer id) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * GET /category/{id} : Getting Category details by id
-     *
-     * @param id  (required)
-     * @return A list of a category details (status code 200)
+     * @return A list of a user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting Category details by id", nickname = "categoryIdGet", notes = "", response = Categories.class, tags={ "Category Information", })
+    @ApiOperation(value = "Getting user details by id", nickname = "userIdGet", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a category details", response = Categories.class),
+        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/category/{id}",
+    @RequestMapping(value = "/user/{id}",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Categories> _categoryIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
-        return categoryIdGet(id);
+    default ResponseEntity<User> _userIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
+        return userIdGet(id);
     }
 
     // Override this method
-    default  ResponseEntity<Categories> categoryIdGet(Integer id) {
+    default  ResponseEntity<User> userIdGet(Integer id) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -151,35 +121,35 @@ public interface CategoryApi {
 
 
     /**
-     * PUT /category/{id} : Editing category details
+     * PUT /user/{id} : Editing user details
      *
      * @param id  (required)
-     * @param body Category details that need to be added (required)
-     * @return A list of a category details (status code 200)
+     * @param body User details that need to be added (required)
+     * @return A list of a user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Editing category details", nickname = "categoryIdPut", notes = "", response = Categories.class, tags={ "Category Information", })
+    @ApiOperation(value = "Editing user details", nickname = "userIdPut", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a category details", response = Categories.class),
+        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/category/{id}",
+    @RequestMapping(value = "/user/{id}",
         produces = { "applicantion/json" }, 
         consumes = { "applicantion/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Categories> _categoryIdPut(@ApiParam(value = "",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Category details that need to be added" ,required=true )  @Valid @RequestBody Categories body) {
-        return categoryIdPut(id, body);
+    default ResponseEntity<User> _userIdPut(@ApiParam(value = "",required=true) @PathVariable("id") Integer id,@ApiParam(value = "User details that need to be added" ,required=true )  @Valid @RequestBody User body) {
+        return userIdPut(id, body);
     }
 
     // Override this method
-    default  ResponseEntity<Categories> categoryIdPut(Integer id, Categories body) {
+    default  ResponseEntity<User> userIdPut(Integer id, User body) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -195,31 +165,31 @@ public interface CategoryApi {
 
 
     /**
-     * POST /category : Adding a new category
+     * POST /user : Adding a new User
      *
-     * @param body category details that needs to be added (required)
+     * @param body user details that needs to be added (required)
      * @return Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Adding a new category", nickname = "categoryPost", notes = "", tags={ "Category Information", })
+    @ApiOperation(value = "Adding a new User", nickname = "userPost", notes = "", tags={ "User Information", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/category",
+    @RequestMapping(value = "/user",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Void> _categoryPost(@ApiParam(value = "category details that needs to be added" ,required=true )  @Valid @RequestBody Categories body) {
-        return categoryPost(body);
+    default ResponseEntity<Void> _userPost(@ApiParam(value = "user details that needs to be added" ,required=true )  @Valid @RequestBody User body) {
+        return userPost(body);
     }
 
     // Override this method
-    default  ResponseEntity<Void> categoryPost(Categories body) {
+    default  ResponseEntity<Void> userPost(User body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
