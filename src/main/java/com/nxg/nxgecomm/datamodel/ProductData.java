@@ -1,17 +1,21 @@
 package com.nxg.nxgecomm.datamodel;
 
 import java.io.Serializable;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
-public class ProductsData implements Serializable {
+public class ProductData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -70,6 +74,30 @@ public class ProductsData implements Serializable {
 	
 	@Column(name = "status")
 	private int status;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ProductData", cascade = CascadeType.ALL)
+	private List<ProductImageData> productImageDataList;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ProductData", cascade = CascadeType.ALL)
+	private List<ProductVariantData> productVariantDataList;
+
+	
+	
+	public List<ProductImageData> getProductImageDataList() {
+		return productImageDataList;
+	}
+
+	public void setProductImageDataList(List<ProductImageData> productImageDataList) {
+		this.productImageDataList = productImageDataList;
+	}
+
+	public List<ProductVariantData> getProductVariantDataList() {
+		return productVariantDataList;
+	}
+
+	public void setProductVariantDataList(List<ProductVariantData> productVariantDataList) {
+		this.productVariantDataList = productVariantDataList;
+	}
 
 	public int getProductId() {
 		return productId;

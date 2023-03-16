@@ -10,17 +10,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * ProductImage
+ * ProductRequestProductImage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-11T18:40:56.382042300+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-16T13:10:42.607566100+05:30[Asia/Calcutta]")
 
-public class ProductImage   {
-  @JsonProperty("id")
-  private Integer id;
-
-  @JsonProperty("productId")
-  private Integer productId;
-
+public class ProductRequestProductImage   {
   @JsonProperty("imageName")
   private String imageName;
 
@@ -30,47 +24,7 @@ public class ProductImage   {
   @JsonProperty("isPrimary")
   private Integer isPrimary;
 
-  public ProductImage id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-  */
-  @ApiModelProperty(value = "")
-
-@Size(max=11) 
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public ProductImage productId(Integer productId) {
-    this.productId = productId;
-    return this;
-  }
-
-  /**
-   * Get productId
-   * @return productId
-  */
-  @ApiModelProperty(value = "")
-
-@Size(max=11) 
-  public Integer getProductId() {
-    return productId;
-  }
-
-  public void setProductId(Integer productId) {
-    this.productId = productId;
-  }
-
-  public ProductImage imageName(String imageName) {
+  public ProductRequestProductImage imageName(String imageName) {
     this.imageName = imageName;
     return this;
   }
@@ -90,7 +44,7 @@ public class ProductImage   {
     this.imageName = imageName;
   }
 
-  public ProductImage url(String url) {
+  public ProductRequestProductImage url(String url) {
     this.url = url;
     return this;
   }
@@ -110,7 +64,7 @@ public class ProductImage   {
     this.url = url;
   }
 
-  public ProductImage isPrimary(Integer isPrimary) {
+  public ProductRequestProductImage isPrimary(Integer isPrimary) {
     this.isPrimary = isPrimary;
     return this;
   }
@@ -139,26 +93,22 @@ public class ProductImage   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductImage productImage = (ProductImage) o;
-    return Objects.equals(this.id, productImage.id) &&
-        Objects.equals(this.productId, productImage.productId) &&
-        Objects.equals(this.imageName, productImage.imageName) &&
-        Objects.equals(this.url, productImage.url) &&
-        Objects.equals(this.isPrimary, productImage.isPrimary);
+    ProductRequestProductImage productRequestProductImage = (ProductRequestProductImage) o;
+    return Objects.equals(this.imageName, productRequestProductImage.imageName) &&
+        Objects.equals(this.url, productRequestProductImage.url) &&
+        Objects.equals(this.isPrimary, productRequestProductImage.isPrimary);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, productId, imageName, url, isPrimary);
+    return Objects.hash(imageName, url, isPrimary);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductImage {\n");
+    sb.append("class ProductRequestProductImage {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    imageName: ").append(toIndentedString(imageName)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    isPrimary: ").append(toIndentedString(isPrimary)).append("\n");

@@ -3,25 +3,24 @@ package com.nxg.nxgecomm.api.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.nxg.nxgecomm.api.model.ProductImage;
-import com.nxg.nxgecomm.api.model.ProductVariant;
+import com.nxg.nxgecomm.api.model.ProductRequestProductImage;
+import com.nxg.nxgecomm.api.model.ProductRequestProductVariant;
+import com.nxg.nxgecomm.api.model.ProductRequestSeo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Product
+ * ProductRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-11T18:40:56.382042300+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-16T13:10:42.607566100+05:30[Asia/Calcutta]")
 
-public class Product   {
-  @JsonProperty("productId")
-  private Integer productId;
-
+public class ProductRequest   {
   @JsonProperty("categoryId")
   private Integer categoryId;
 
@@ -58,48 +57,28 @@ public class Product   {
   @JsonProperty("productUrl")
   private String productUrl;
 
-  @JsonProperty("searchTerms")
-  private String searchTerms;
-
-  @JsonProperty("seoTitle")
-  private String seoTitle;
-
   @JsonProperty("meta")
   private String meta;
 
   @JsonProperty("keyword")
   private String keyword;
 
+  @JsonProperty("seo")
+  private ProductRequestSeo seo;
+
   @JsonProperty("productImage")
   @Valid
-  private List<ProductImage> productImage = null;
+  private List<ProductRequestProductImage> productImage = null;
+
+  @JsonProperty("variantOption")
+  @Valid
+  private List<Map<String, List<String>>> variantOption = null;
 
   @JsonProperty("productVariant")
   @Valid
-  private List<ProductVariant> productVariant = null;
+  private List<ProductRequestProductVariant> productVariant = null;
 
-  public Product productId(Integer productId) {
-    this.productId = productId;
-    return this;
-  }
-
-  /**
-   * Get productId
-   * @return productId
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=11) 
-  public Integer getProductId() {
-    return productId;
-  }
-
-  public void setProductId(Integer productId) {
-    this.productId = productId;
-  }
-
-  public Product categoryId(Integer categoryId) {
+  public ProductRequest categoryId(Integer categoryId) {
     this.categoryId = categoryId;
     return this;
   }
@@ -108,8 +87,7 @@ public class Product   {
    * Get categoryId
    * @return categoryId
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=11) 
   public Integer getCategoryId() {
@@ -120,7 +98,7 @@ public class Product   {
     this.categoryId = categoryId;
   }
 
-  public Product title(String title) {
+  public ProductRequest title(String title) {
     this.title = title;
     return this;
   }
@@ -129,8 +107,7 @@ public class Product   {
    * Get title
    * @return title
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=200) 
   public String getTitle() {
@@ -141,7 +118,7 @@ public class Product   {
     this.title = title;
   }
 
-  public Product price(Float price) {
+  public ProductRequest price(Float price) {
     this.price = price;
     return this;
   }
@@ -150,8 +127,7 @@ public class Product   {
    * Get price
    * @return price
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Float getPrice() {
@@ -162,7 +138,7 @@ public class Product   {
     this.price = price;
   }
 
-  public Product cPrice(Float cPrice) {
+  public ProductRequest cPrice(Float cPrice) {
     this.cPrice = cPrice;
     return this;
   }
@@ -171,8 +147,7 @@ public class Product   {
    * Get cPrice
    * @return cPrice
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Float getcPrice() {
@@ -183,7 +158,7 @@ public class Product   {
     this.cPrice = cPrice;
   }
 
-  public Product taxPercent(Float taxPercent) {
+  public ProductRequest taxPercent(Float taxPercent) {
     this.taxPercent = taxPercent;
     return this;
   }
@@ -192,8 +167,7 @@ public class Product   {
    * Get taxPercent
    * @return taxPercent
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Float getTaxPercent() {
@@ -204,7 +178,7 @@ public class Product   {
     this.taxPercent = taxPercent;
   }
 
-  public Product qty(Integer qty) {
+  public ProductRequest qty(Integer qty) {
     this.qty = qty;
     return this;
   }
@@ -213,8 +187,7 @@ public class Product   {
    * Get qty
    * @return qty
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=10) 
   public Integer getQty() {
@@ -225,7 +198,7 @@ public class Product   {
     this.qty = qty;
   }
 
-  public Product sizeType(Integer sizeType) {
+  public ProductRequest sizeType(Integer sizeType) {
     this.sizeType = sizeType;
     return this;
   }
@@ -234,8 +207,7 @@ public class Product   {
    * Get sizeType
    * @return sizeType
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=1) 
   public Integer getSizeType() {
@@ -246,7 +218,7 @@ public class Product   {
     this.sizeType = sizeType;
   }
 
-  public Product description(String description) {
+  public ProductRequest description(String description) {
     this.description = description;
     return this;
   }
@@ -255,8 +227,7 @@ public class Product   {
    * Get description
    * @return description
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getDescription() {
@@ -267,7 +238,7 @@ public class Product   {
     this.description = description;
   }
 
-  public Product skuCode(String skuCode) {
+  public ProductRequest skuCode(String skuCode) {
     this.skuCode = skuCode;
     return this;
   }
@@ -276,8 +247,7 @@ public class Product   {
    * Get skuCode
    * @return skuCode
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getSkuCode() {
@@ -288,7 +258,7 @@ public class Product   {
     this.skuCode = skuCode;
   }
 
-  public Product barcode(String barcode) {
+  public ProductRequest barcode(String barcode) {
     this.barcode = barcode;
     return this;
   }
@@ -297,8 +267,7 @@ public class Product   {
    * Get barcode
    * @return barcode
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getBarcode() {
@@ -309,7 +278,7 @@ public class Product   {
     this.barcode = barcode;
   }
 
-  public Product isVariants(Integer isVariants) {
+  public ProductRequest isVariants(Integer isVariants) {
     this.isVariants = isVariants;
     return this;
   }
@@ -318,8 +287,7 @@ public class Product   {
    * Get isVariants
    * @return isVariants
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=11) 
   public Integer getIsVariants() {
@@ -330,7 +298,7 @@ public class Product   {
     this.isVariants = isVariants;
   }
 
-  public Product productUrl(String productUrl) {
+  public ProductRequest productUrl(String productUrl) {
     this.productUrl = productUrl;
     return this;
   }
@@ -339,8 +307,7 @@ public class Product   {
    * Get productUrl
    * @return productUrl
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getProductUrl() {
@@ -351,49 +318,7 @@ public class Product   {
     this.productUrl = productUrl;
   }
 
-  public Product searchTerms(String searchTerms) {
-    this.searchTerms = searchTerms;
-    return this;
-  }
-
-  /**
-   * Get searchTerms
-   * @return searchTerms
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getSearchTerms() {
-    return searchTerms;
-  }
-
-  public void setSearchTerms(String searchTerms) {
-    this.searchTerms = searchTerms;
-  }
-
-  public Product seoTitle(String seoTitle) {
-    this.seoTitle = seoTitle;
-    return this;
-  }
-
-  /**
-   * Get seoTitle
-   * @return seoTitle
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=250) 
-  public String getSeoTitle() {
-    return seoTitle;
-  }
-
-  public void setSeoTitle(String seoTitle) {
-    this.seoTitle = seoTitle;
-  }
-
-  public Product meta(String meta) {
+  public ProductRequest meta(String meta) {
     this.meta = meta;
     return this;
   }
@@ -402,8 +327,7 @@ public class Product   {
    * Get meta
    * @return meta
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=170) 
   public String getMeta() {
@@ -414,7 +338,7 @@ public class Product   {
     this.meta = meta;
   }
 
-  public Product keyword(String keyword) {
+  public ProductRequest keyword(String keyword) {
     this.keyword = keyword;
     return this;
   }
@@ -423,8 +347,7 @@ public class Product   {
    * Get keyword
    * @return keyword
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=200) 
   public String getKeyword() {
@@ -435,12 +358,33 @@ public class Product   {
     this.keyword = keyword;
   }
 
-  public Product productImage(List<ProductImage> productImage) {
+  public ProductRequest seo(ProductRequestSeo seo) {
+    this.seo = seo;
+    return this;
+  }
+
+  /**
+   * Get seo
+   * @return seo
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public ProductRequestSeo getSeo() {
+    return seo;
+  }
+
+  public void setSeo(ProductRequestSeo seo) {
+    this.seo = seo;
+  }
+
+  public ProductRequest productImage(List<ProductRequestProductImage> productImage) {
     this.productImage = productImage;
     return this;
   }
 
-  public Product addProductImageItem(ProductImage productImageItem) {
+  public ProductRequest addProductImageItem(ProductRequestProductImage productImageItem) {
     if (this.productImage == null) {
       this.productImage = new ArrayList<>();
     }
@@ -456,20 +400,49 @@ public class Product   {
 
   @Valid
 
-  public List<ProductImage> getProductImage() {
+  public List<ProductRequestProductImage> getProductImage() {
     return productImage;
   }
 
-  public void setProductImage(List<ProductImage> productImage) {
+  public void setProductImage(List<ProductRequestProductImage> productImage) {
     this.productImage = productImage;
   }
 
-  public Product productVariant(List<ProductVariant> productVariant) {
+  public ProductRequest variantOption(List<Map<String, List<String>>> variantOption) {
+    this.variantOption = variantOption;
+    return this;
+  }
+
+  public ProductRequest addVariantOptionItem(Map<String, List<String>> variantOptionItem) {
+    if (this.variantOption == null) {
+      this.variantOption = new ArrayList<>();
+    }
+    this.variantOption.add(variantOptionItem);
+    return this;
+  }
+
+  /**
+   * Get variantOption
+   * @return variantOption
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<Map<String, List<String>>> getVariantOption() {
+    return variantOption;
+  }
+
+  public void setVariantOption(List<Map<String, List<String>>> variantOption) {
+    this.variantOption = variantOption;
+  }
+
+  public ProductRequest productVariant(List<ProductRequestProductVariant> productVariant) {
     this.productVariant = productVariant;
     return this;
   }
 
-  public Product addProductVariantItem(ProductVariant productVariantItem) {
+  public ProductRequest addProductVariantItem(ProductRequestProductVariant productVariantItem) {
     if (this.productVariant == null) {
       this.productVariant = new ArrayList<>();
     }
@@ -485,11 +458,11 @@ public class Product   {
 
   @Valid
 
-  public List<ProductVariant> getProductVariant() {
+  public List<ProductRequestProductVariant> getProductVariant() {
     return productVariant;
   }
 
-  public void setProductVariant(List<ProductVariant> productVariant) {
+  public void setProductVariant(List<ProductRequestProductVariant> productVariant) {
     this.productVariant = productVariant;
   }
 
@@ -502,39 +475,37 @@ public class Product   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Product product = (Product) o;
-    return Objects.equals(this.productId, product.productId) &&
-        Objects.equals(this.categoryId, product.categoryId) &&
-        Objects.equals(this.title, product.title) &&
-        Objects.equals(this.price, product.price) &&
-        Objects.equals(this.cPrice, product.cPrice) &&
-        Objects.equals(this.taxPercent, product.taxPercent) &&
-        Objects.equals(this.qty, product.qty) &&
-        Objects.equals(this.sizeType, product.sizeType) &&
-        Objects.equals(this.description, product.description) &&
-        Objects.equals(this.skuCode, product.skuCode) &&
-        Objects.equals(this.barcode, product.barcode) &&
-        Objects.equals(this.isVariants, product.isVariants) &&
-        Objects.equals(this.productUrl, product.productUrl) &&
-        Objects.equals(this.searchTerms, product.searchTerms) &&
-        Objects.equals(this.seoTitle, product.seoTitle) &&
-        Objects.equals(this.meta, product.meta) &&
-        Objects.equals(this.keyword, product.keyword) &&
-        Objects.equals(this.productImage, product.productImage) &&
-        Objects.equals(this.productVariant, product.productVariant);
+    ProductRequest productRequest = (ProductRequest) o;
+    return Objects.equals(this.categoryId, productRequest.categoryId) &&
+        Objects.equals(this.title, productRequest.title) &&
+        Objects.equals(this.price, productRequest.price) &&
+        Objects.equals(this.cPrice, productRequest.cPrice) &&
+        Objects.equals(this.taxPercent, productRequest.taxPercent) &&
+        Objects.equals(this.qty, productRequest.qty) &&
+        Objects.equals(this.sizeType, productRequest.sizeType) &&
+        Objects.equals(this.description, productRequest.description) &&
+        Objects.equals(this.skuCode, productRequest.skuCode) &&
+        Objects.equals(this.barcode, productRequest.barcode) &&
+        Objects.equals(this.isVariants, productRequest.isVariants) &&
+        Objects.equals(this.productUrl, productRequest.productUrl) &&
+        Objects.equals(this.meta, productRequest.meta) &&
+        Objects.equals(this.keyword, productRequest.keyword) &&
+        Objects.equals(this.seo, productRequest.seo) &&
+        Objects.equals(this.productImage, productRequest.productImage) &&
+        Objects.equals(this.variantOption, productRequest.variantOption) &&
+        Objects.equals(this.productVariant, productRequest.productVariant);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productId, categoryId, title, price, cPrice, taxPercent, qty, sizeType, description, skuCode, barcode, isVariants, productUrl, searchTerms, seoTitle, meta, keyword, productImage, productVariant);
+    return Objects.hash(categoryId, title, price, cPrice, taxPercent, qty, sizeType, description, skuCode, barcode, isVariants, productUrl, meta, keyword, seo, productImage, variantOption, productVariant);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Product {\n");
+    sb.append("class ProductRequest {\n");
     
-    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
@@ -547,11 +518,11 @@ public class Product   {
     sb.append("    barcode: ").append(toIndentedString(barcode)).append("\n");
     sb.append("    isVariants: ").append(toIndentedString(isVariants)).append("\n");
     sb.append("    productUrl: ").append(toIndentedString(productUrl)).append("\n");
-    sb.append("    searchTerms: ").append(toIndentedString(searchTerms)).append("\n");
-    sb.append("    seoTitle: ").append(toIndentedString(seoTitle)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    keyword: ").append(toIndentedString(keyword)).append("\n");
+    sb.append("    seo: ").append(toIndentedString(seo)).append("\n");
     sb.append("    productImage: ").append(toIndentedString(productImage)).append("\n");
+    sb.append("    variantOption: ").append(toIndentedString(variantOption)).append("\n");
     sb.append("    productVariant: ").append(toIndentedString(productVariant)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -13,8 +13,8 @@ externalDocs:
   description: Find out more about NXG Ecommerce
   url: http://swagger.io
 servers:
-  - url: https://localhost:8080/nxgecommerce/api/v1
-  - url: http://localhost:8080/nxgecommerce/api/v1
+  - url: https://localhost:8080/nxgecomm/api/v1
+  - url: http://localhost:8080/nxgecomm/api/v1
 tags:
   - name: NXG Ecommerce API
     description: Everything about NXG Ecommerce
@@ -342,7 +342,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductRequest'
         required: true
       responses:
         '201':
@@ -371,7 +371,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/ProductRequest'
         '201':
           description: Successful
           content: {}
@@ -404,7 +404,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/ProductRequest'
         '201':
           description: Successful
           content: {}
@@ -435,7 +435,7 @@ paths:
           content:
             applicantion/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/ProductRequest'
           required: true      
         responses:
           '200':
@@ -443,7 +443,7 @@ paths:
             content:
               applicantion/json:
                 schema:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/components/schemas/ProductRequest'
           '201':
             description: Successful
             content: {}
@@ -565,30 +565,9 @@ components:
           type: integer
           maxLength: 1      
           
-    Product:
+    ProductRequest:
       type: object
-      required:
-        - productId
-        - categoryId
-        - title
-        - price
-        - cPrice
-        - taxPercent
-        - qty
-        - sizeType
-        - description
-        - skuCode
-        - barcode
-        - isVariants
-        - productUrl
-        - searchTerms
-        - seoTitle
-        - meta
-        - keyword
       properties:
-        productId:
-          type: integer
-          maxLength: 11
         categoryId:
           type: integer
           maxLength: 11
@@ -600,7 +579,7 @@ components:
           format: float
         cPrice:
           type: number
-          format: float
+          format: float  
         taxPercent:
           type: number
           format: float
@@ -609,7 +588,7 @@ components:
           maxLength: 10
         sizeType:
           type: integer
-          maxLength: 1
+          maxLength: 1  
         description:
           type: string
         skuCode:
@@ -621,131 +600,82 @@ components:
           maxLength: 11
         productUrl:
           type: string
-        searchTerms:
-          type: string
-        seoTitle:
-          type: string
-          maxLength: 250
         meta:
           type: string
           maxLength: 170
         keyword:
           type: string
-          maxLength: 200
+          maxLength: 200  
+        seo:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            searchTerms:
+              type: string
+          maxLength: 250
+ 
         productImage:
           type: array
           items:
-            "$ref": "#/components/schemas/ProductImage"
+            type: object
+            properties:
+              imageName:
+                type: string
+                maxLength: 200
+              url:
+                type: string
+              isPrimary:
+                type: integer
+                maxLength: 1  
+        variantOption:
+                type: "array"
+                items:
+                  type: "object"
+                  additionalProperties:
+                    type: "array"
+                    items:
+                      type: "string"
+                  properties:    
+                    createdBy:
+                      type: integer
         productVariant:
           type: array
           items:
-            "$ref": "#/components/schemas/ProductVariant"
-        
-    ProductImage:
-      type: object
-      properties:
-        id:
-          type: integer
-          maxLength: 11
-        productId:
-          type: integer
-          maxLength: 11
-        imageName:
-          type: string
-          maxLength: 200
-        url:
-          type: string
-        isPrimary:
-          type: integer
-          maxLength: 1
+            type: object
+            properties:
+              price:
+                type: number
+                format: float
+              sku:
+                type: string
+                maxLength: 60
+              barcode:
+                type: string
+                maxLength: 120
+              variantCombinationName:
+                type: string
+                maxLength: 120
+              isDefault:
+                type: boolean
+              createdBy:
+                type: integer
+                maxLength: 11  
+              productVariantImage:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    imgUrl:
+                      type: string
+                      maxLength: 500
+                    isPrimary:
+                      type: integer
+                      maxLength: 1
+              variantOptionValue:
+                type: array
+                items:
+                  type: string
     
-    
-    ProductVariant:
-      type: object
-      properties:
-        productVariantId:
-          type: integer
-          maxLength: 11
-        productId:
-          type: integer
-          maxLength: 11
-        variantOptionValueId1:
-          type: integer
-          maxLength: 11
-        variantOptionValueId2:
-          type: integer
-          maxLength: 11
-        variantCombinationName:
-          type: string
-          maxLength: 120
-        price:
-          type: number
-          format: float
-        sku:
-          type: string
-          maxLength: 60
-        quantity:
-          type: integer
-          maxLength: 11
-        barcode:
-          type: string
-          maxLength: 120
-        isDefault:
-          type: boolean
-        userId:
-          type: integer
-          maxLength: 11
-    productVariantImage:
-          type: array
-          items:
-            "$ref": "#/components/schemas/ProductVariantImage"
-    
-    ProductVariantImage:
-      type: object
-      properties:
-        id:
-          type: integer
-          maxLength: 11
-        productVariantId:
-          type: integer
-          maxLength: 11
-        imgUrl:
-          type: string
-          maxLength: 500
-        isPrimary:
-          type: integer
-          maxLength: 1
-        variantOption:
-          type: array
-          items:
-            "$ref": "#/components/schemas/VariantOption"
-    
-    VariantOption:
-      type: object
-      properties:
-        variantOptionId:
-          type: integer
-          maxLength: 11
-        optionName:
-          type: string
-          maxLength: 48
-        userId: 
-          type: integer
-          maxLength: 11
-        variantOptionValue:
-          type: array
-          items:
-            "$ref": "#/components/schemas/VariantOptionValue"
-      
-    VariantOptionValue:
-      type: object
-      properties:
-        variantOptionValueId:
-          type: integer
-          maxLength: 11
-        variantOptionId:
-          type: integer
-          maxLength: 11
-        optionValue:
-          type: string
-          maxLength: 25
