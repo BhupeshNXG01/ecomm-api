@@ -32,7 +32,7 @@ public class CategoriesService {
 			categoriesData.setCategoryHandle(categories.getCategoryHandel());
 			categoriesData.setStatus(1);
 			categoriesData = categoriesRepository.save(categoriesData);
-			categories.setId(categoriesData.getId());
+			categories.setId(categoriesData.getCategoryId());
 			return categories;
 		}catch(ResponseStatusException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
@@ -43,7 +43,7 @@ public class CategoriesService {
 public Categories updateCategory(int id, Categories categories) throws Exception{
 		
 		
-		categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
+		categoriesDataOp = categoriesRepository.findByCategoryIdAndStatus(id, 1);
 		
 		if(categoriesDataOp.isPresent()) {
 			
@@ -56,7 +56,7 @@ public Categories updateCategory(int id, Categories categories) throws Exception
 				categoriesData.setCategoryHandle(categories.getCategoryHandel());
 				categoriesData.setStatus(1);
 				categoriesData = categoriesRepository.save(categoriesData);
-				categories.setId(categoriesData.getId());
+				categories.setId(categoriesData.getCategoryId());
 				return categories;
 			}catch(ResponseStatusException ex) {
 				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
@@ -72,7 +72,7 @@ public Categories updateCategory(int id, Categories categories) throws Exception
 public Categories getCategoryById(int id) throws Exception{
 	
 	
-	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
+	categoriesDataOp = categoriesRepository.findByCategoryIdAndStatus(id, 1);
 	
 	if(categoriesDataOp.isPresent()) {
 		
@@ -84,7 +84,7 @@ public Categories getCategoryById(int id) throws Exception{
 			categories.setPosition(categoriesData.getPosition());
 			categories.setImage(categoriesData.getImage());
 			categories.setCategoryHandel(categoriesData.getCategoryHandle());
-			categories.setId(categoriesData.getId());
+			categories.setId(categoriesData.getCategoryId());
 			
 			return categories;
 		}catch(ResponseStatusException ex) {
@@ -114,7 +114,7 @@ public List<Categories> getAllCategories() throws Exception {
 				categories.setPosition(categoriesData.getPosition());
 				categories.setImage(categoriesData.getImage());
 				categories.setCategoryHandel(categoriesData.getCategoryHandle());
-				categories.setId(categoriesData.getId());
+				categories.setId(categoriesData.getCategoryId());
 				categoriesList.add(categories);
 			}
 			
@@ -132,7 +132,7 @@ public List<Categories> getAllCategories() throws Exception {
 public Categories deleteCategory(int id) throws Exception{
 	
 	
-	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
+	categoriesDataOp = categoriesRepository.findByCategoryIdAndStatus(id, 1);
 	
 	if(categoriesDataOp.isPresent()) {
 		
@@ -143,7 +143,7 @@ public Categories deleteCategory(int id) throws Exception{
 			categoriesData = categoriesRepository.save(categoriesData);
 			Categories categories = new Categories();
 			
-			categories.setId(categoriesData.getId());
+			categories.setId(categoriesData.getCategoryId());
 			
 			return categories;
 		}catch(ResponseStatusException ex) {

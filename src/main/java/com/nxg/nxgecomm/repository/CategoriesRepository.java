@@ -9,7 +9,7 @@ import com.nxg.nxgecomm.datamodel.CategoriesData;
 
 public interface CategoriesRepository extends JpaRepository<CategoriesData,Integer> {
 
-	Optional<CategoriesData> findByIdAndStatus(int id, int status);
+	Optional<CategoriesData> findByCategoryIdAndStatus(int categoryId, int status);
 	List<CategoriesData> findByStatus(int status);
 	
 }
