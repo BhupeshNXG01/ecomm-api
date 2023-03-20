@@ -331,6 +331,134 @@ paths:
           description: Bad Gatway
           content: {}               
       x-codegen-request-body-name: body
+  /user:
+    post:
+      tags:
+        - User Information
+      summary: Adding a new User
+      requestBody:
+        description: user details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - User Information
+      summary:  Getting all user details
+      responses:
+        '200':
+          description:  A list of all user details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /user/{user_id}:
+    get:
+      tags:
+        - User Information
+      summary: Getting user details by id
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a user details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - User Information
+        summary: Editing user details
+        parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: User details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          required: true      
+        responses:
+          '200':
+            description: A list of a user details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/User'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body
+      
   
 components:
   schemas:
@@ -410,3 +538,56 @@ components:
           type: integer
           maxLength: 1    
           
+    User:
+      type: object
+      required:
+        - user_id
+        - seller_id
+        - email
+        - username
+        - mobile
+        - password
+        - seller_password
+      properties:
+        user_id:
+          type: integer
+          maxLength: 11
+        seller_id:
+          type: integer
+          maxLength: 11  
+        email:
+          type: string
+          maxLength: 200
+        username:
+          type: string
+          maxLength: 100
+        mobile:
+          type: integer
+          maxLength: 10
+        password:
+          type: string
+          maxLength: 200
+        seller_password:
+          type: string
+          maxLength: 200
+    UserRes:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          maxLength: 11
+        seller_id:
+          type: integer
+          maxLength: 11  
+        email:
+          type: string
+          maxLength: 200
+        username:
+          type: string
+          maxLength: 100
+        mobile:
+          type: integer
+          maxLength: 10
+        seller_password:
+          type: string
+          maxLength: 200                            

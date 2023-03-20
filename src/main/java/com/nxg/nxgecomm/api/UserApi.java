@@ -5,7 +5,7 @@
  */
 package com.nxg.nxgecomm.api;
 
-import com.nxg.nxgecomm.api.model.CustomerDetails;
+import com.nxg.nxgecomm.api.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,40 +30,40 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-20T12:25:04.400672700+05:30[Asia/Calcutta]")
 
 @Validated
-@Api(value = "customer", description = "the customer API")
-public interface CustomerApi {
+@Api(value = "user", description = "the user API")
+public interface UserApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /customer : Getting all customer details
+     * GET /user : Getting all user details
      *
-     * @return A list of all customer details (status code 200)
+     * @return A list of all user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting all customer details", nickname = "customerGet", notes = "", response = CustomerDetails.class, tags={ "Customer Information", })
+    @ApiOperation(value = "Getting all user details", nickname = "userGet", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of all customer details", response = CustomerDetails.class),
+        @ApiResponse(code = 200, message = "A list of all user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/customer",
+    @RequestMapping(value = "/user",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<CustomerDetails> _customerGet() {
-        return customerGet();
+    default ResponseEntity<User> _userGet() {
+        return userGet();
     }
 
     // Override this method
-    default  ResponseEntity<CustomerDetails> customerGet() {
+    default  ResponseEntity<User> userGet() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -79,63 +79,64 @@ public interface CustomerApi {
 
 
     /**
-     * DELETE /customer/{id} : Delete a customer
+     * POST /user : Adding a new User
      *
-     * @param id  (required)
+     * @param body user details that needs to be added (required)
      * @return Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Delete a customer", nickname = "customerIdDelete", notes = "", tags={ "Customer Information", })
+    @ApiOperation(value = "Adding a new User", nickname = "userPost", notes = "", tags={ "User Information", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/customer/{id}",
-        method = RequestMethod.DELETE)
-    default ResponseEntity<Void> _customerIdDelete(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
-        return customerIdDelete(id);
+    @RequestMapping(value = "/user",
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> _userPost(@ApiParam(value = "user details that needs to be added" ,required=true )  @Valid @RequestBody User body) {
+        return userPost(body);
     }
 
     // Override this method
-    default  ResponseEntity<Void> customerIdDelete(Integer id) {
+    default  ResponseEntity<Void> userPost(User body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * GET /customer/{id} : Getting Customer details by id
+     * GET /user/{user_id} : Getting user details by id
      *
-     * @param id  (required)
-     * @return A list of a customer&#39;s details (status code 200)
+     * @param userId  (required)
+     * @return A list of a user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting Customer details by id", nickname = "customerIdGet", notes = "", response = CustomerDetails.class, tags={ "Customer Information", })
+    @ApiOperation(value = "Getting user details by id", nickname = "userUserIdGet", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a customer's details", response = CustomerDetails.class),
+        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/customer/{id}",
+    @RequestMapping(value = "/user/{user_id}",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<CustomerDetails> _customerIdGet(@ApiParam(value = "",required=true) @PathVariable("id") Integer id) {
-        return customerIdGet(id);
+    default ResponseEntity<User> _userUserIdGet(@ApiParam(value = "",required=true) @PathVariable("user_id") Integer userId) {
+        return userUserIdGet(userId);
     }
 
     // Override this method
-    default  ResponseEntity<CustomerDetails> customerIdGet(Integer id) {
+    default  ResponseEntity<User> userUserIdGet(Integer userId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -151,35 +152,35 @@ public interface CustomerApi {
 
 
     /**
-     * PUT /customer/{id} : Editing customer details
+     * PUT /user/{user_id} : Editing user details
      *
-     * @param id  (required)
-     * @param body Customer details that need to be added (required)
-     * @return A list of a customer&#39;s details (status code 200)
+     * @param userId  (required)
+     * @param body User details that need to be added (required)
+     * @return A list of a user details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Editing customer details", nickname = "customerIdPut", notes = "", response = CustomerDetails.class, tags={ "Customer Information", })
+    @ApiOperation(value = "Editing user details", nickname = "userUserIdPut", notes = "", response = User.class, tags={ "User Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a customer's details", response = CustomerDetails.class),
+        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/customer/{id}",
+    @RequestMapping(value = "/user/{user_id}",
         produces = { "applicantion/json" }, 
         consumes = { "applicantion/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<CustomerDetails> _customerIdPut(@ApiParam(value = "",required=true) @PathVariable("id") Integer id,@ApiParam(value = "Customer details that need to be added" ,required=true )  @Valid @RequestBody CustomerDetails body) {
-        return customerIdPut(id, body);
+    default ResponseEntity<User> _userUserIdPut(@ApiParam(value = "",required=true) @PathVariable("user_id") Integer userId,@ApiParam(value = "User details that need to be added" ,required=true )  @Valid @RequestBody User body) {
+        return userUserIdPut(userId, body);
     }
 
     // Override this method
-    default  ResponseEntity<CustomerDetails> customerIdPut(Integer id, CustomerDetails body) {
+    default  ResponseEntity<User> userUserIdPut(Integer userId, User body) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -189,37 +190,6 @@ public interface CustomerApi {
                 }
             }
         });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * POST /customer : Adding a new customer
-     *
-     * @param body customer details that needs to be added (required)
-     * @return Successful (status code 201)
-     *         or Bad request input (status code 400)
-     *         or Data not found (status code 404)
-     *         or Invalid input (status code 500)
-     *         or Bad Gatway (status code 502)
-     */
-    @ApiOperation(value = "Adding a new customer", nickname = "customerPost", notes = "", tags={ "Customer Information", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Successful"),
-        @ApiResponse(code = 400, message = "Bad request input"),
-        @ApiResponse(code = 404, message = "Data not found"),
-        @ApiResponse(code = 500, message = "Invalid input"),
-        @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/customer",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    default ResponseEntity<Void> _customerPost(@ApiParam(value = "customer details that needs to be added" ,required=true )  @Valid @RequestBody CustomerDetails body) {
-        return customerPost(body);
-    }
-
-    // Override this method
-    default  ResponseEntity<Void> customerPost(CustomerDetails body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
