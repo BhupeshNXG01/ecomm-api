@@ -5,7 +5,7 @@
  */
 package com.nxg.nxgecomm.api;
 
-import com.nxg.nxgecomm.api.model.User;
+import com.nxg.nxgecomm.api.model.Orders;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,40 +30,40 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-17T15:37:12.436501300+05:30[Asia/Calcutta]")
 
 @Validated
-@Api(value = "user", description = "the user API")
-public interface UserApi {
+@Api(value = "orders", description = "the orders API")
+public interface OrdersApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /user : Getting all user details
+     * GET /orders : Getting all Orders  details
      *
-     * @return A list of all user details (status code 200)
+     * @return A list of all Orders details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting all user details", nickname = "userGet", notes = "", response = User.class, tags={ "User Information", })
+    @ApiOperation(value = "Getting all Orders  details", nickname = "ordersGet", notes = "", response = Orders.class, tags={ "Orders Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of all user details", response = User.class),
+        @ApiResponse(code = 200, message = "A list of all Orders details", response = Orders.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/user",
+    @RequestMapping(value = "/orders",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<User> _userGet() {
-        return userGet();
+    default ResponseEntity<Orders> _ordersGet() {
+        return ordersGet();
     }
 
     // Override this method
-    default  ResponseEntity<User> userGet() {
+    default  ResponseEntity<Orders> ordersGet() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -79,64 +79,63 @@ public interface UserApi {
 
 
     /**
-     * POST /user : Adding a new User
+     * DELETE /orders/{orderId} : Delete a Orders
      *
-     * @param body user details that needs to be added (required)
+     * @param orderId  (required)
      * @return Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Adding a new User", nickname = "userPost", notes = "", tags={ "User Information", })
+    @ApiOperation(value = "Delete a Orders", nickname = "ordersOrderIdDelete", notes = "", tags={ "Orders Information", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/user",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    default ResponseEntity<Void> _userPost(@ApiParam(value = "user details that needs to be added" ,required=true )  @Valid @RequestBody User body) {
-        return userPost(body);
+    @RequestMapping(value = "/orders/{orderId}",
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Void> _ordersOrderIdDelete(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
+        return ordersOrderIdDelete(orderId);
     }
 
     // Override this method
-    default  ResponseEntity<Void> userPost(User body) {
+    default  ResponseEntity<Void> ordersOrderIdDelete(Integer orderId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
 
 
     /**
-     * GET /user/{user_id} : Getting user details by id
+     * GET /orders/{orderId} : Getting Orders details by id
      *
-     * @param userId  (required)
-     * @return A list of a user details (status code 200)
+     * @param orderId  (required)
+     * @return A list of a orders details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Getting user details by id", nickname = "userUserIdGet", notes = "", response = User.class, tags={ "User Information", })
+    @ApiOperation(value = "Getting Orders details by id", nickname = "ordersOrderIdGet", notes = "", response = Orders.class, tags={ "Orders Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
+        @ApiResponse(code = 200, message = "A list of a orders details", response = Orders.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/user/{user_id}",
+    @RequestMapping(value = "/orders/{orderId}",
         produces = { "applicantion/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<User> _userUserIdGet(@ApiParam(value = "",required=true) @PathVariable("user_id") Integer userId) {
-        return userUserIdGet(userId);
+    default ResponseEntity<Orders> _ordersOrderIdGet(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId) {
+        return ordersOrderIdGet(orderId);
     }
 
     // Override this method
-    default  ResponseEntity<User> userUserIdGet(Integer userId) {
+    default  ResponseEntity<Orders> ordersOrderIdGet(Integer orderId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -152,35 +151,35 @@ public interface UserApi {
 
 
     /**
-     * PUT /user/{user_id} : Editing user details
+     * PUT /orders/{orderId} : Editing Orders details
      *
-     * @param userId  (required)
-     * @param body User details that need to be added (required)
-     * @return A list of a user details (status code 200)
+     * @param orderId  (required)
+     * @param body Orders details that need to be added (required)
+     * @return A list of a Orders details (status code 200)
      *         or Successful (status code 201)
      *         or Bad request input (status code 400)
      *         or Data not found (status code 404)
      *         or Invalid input (status code 500)
      *         or Bad Gatway (status code 502)
      */
-    @ApiOperation(value = "Editing user details", nickname = "userUserIdPut", notes = "", response = User.class, tags={ "User Information", })
+    @ApiOperation(value = "Editing Orders details", nickname = "ordersOrderIdPut", notes = "", response = Orders.class, tags={ "Orders Information", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of a user details", response = User.class),
+        @ApiResponse(code = 200, message = "A list of a Orders details", response = Orders.class),
         @ApiResponse(code = 201, message = "Successful"),
         @ApiResponse(code = 400, message = "Bad request input"),
         @ApiResponse(code = 404, message = "Data not found"),
         @ApiResponse(code = 500, message = "Invalid input"),
         @ApiResponse(code = 502, message = "Bad Gatway") })
-    @RequestMapping(value = "/user/{user_id}",
+    @RequestMapping(value = "/orders/{orderId}",
         produces = { "applicantion/json" }, 
         consumes = { "applicantion/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<User> _userUserIdPut(@ApiParam(value = "",required=true) @PathVariable("user_id") Integer userId,@ApiParam(value = "User details that need to be added" ,required=true )  @Valid @RequestBody User body) {
-        return userUserIdPut(userId, body);
+    default ResponseEntity<Orders> _ordersOrderIdPut(@ApiParam(value = "",required=true) @PathVariable("orderId") Integer orderId,@ApiParam(value = "Orders details that need to be added" ,required=true )  @Valid @RequestBody Orders body) {
+        return ordersOrderIdPut(orderId, body);
     }
 
     // Override this method
-    default  ResponseEntity<User> userUserIdPut(Integer userId, User body) {
+    default  ResponseEntity<Orders> ordersOrderIdPut(Integer orderId, Orders body) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf(""))) {
@@ -190,6 +189,37 @@ public interface UserApi {
                 }
             }
         });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * POST /orders : Adding a new Orders
+     *
+     * @param body Orders details that needs to be added (required)
+     * @return Successful (status code 201)
+     *         or Bad request input (status code 400)
+     *         or Data not found (status code 404)
+     *         or Invalid input (status code 500)
+     *         or Bad Gatway (status code 502)
+     */
+    @ApiOperation(value = "Adding a new Orders", nickname = "ordersPost", notes = "", tags={ "Orders Information", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Successful"),
+        @ApiResponse(code = 400, message = "Bad request input"),
+        @ApiResponse(code = 404, message = "Data not found"),
+        @ApiResponse(code = 500, message = "Invalid input"),
+        @ApiResponse(code = 502, message = "Bad Gatway") })
+    @RequestMapping(value = "/orders",
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> _ordersPost(@ApiParam(value = "Orders details that needs to be added" ,required=true )  @Valid @RequestBody Orders body) {
+        return ordersPost(body);
+    }
+
+    // Override this method
+    default  ResponseEntity<Void> ordersPost(Orders body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

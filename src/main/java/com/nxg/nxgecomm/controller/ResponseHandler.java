@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.nxg.nxgecomm.api.model.Categories;
 import com.nxg.nxgecomm.api.model.CustomerDetails;
+import com.nxg.nxgecomm.api.model.Orders;
+import com.nxg.nxgecomm.api.model.UserLogin;
 
 public class ResponseHandler {
 
@@ -26,7 +28,7 @@ public class ResponseHandler {
 			map.put("message", message);
 			map.put("status", status.value());
 			map.put("id", ((Categories) responseObj).getId());
-			return new ResponseEntity<Object>(map,status);
+			return new ResponseEntity<Object>(map,status);		
 		}
 		else {
 			map.put("message", message);
@@ -37,4 +39,37 @@ public class ResponseHandler {
 	
 	}
 	
+	public static ResponseEntity<Object> loginResponse(String message, HttpStatusCode status, Boolean responseObj){
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		if(responseObj) {
+			map.put("message", message);
+			map.put("status", status.value());
+			map.put("login", true);
+			return new ResponseEntity<Object>(map,status);
+		}else {
+			map.put("message", "Invalid Credentials!");
+			map.put("status", status.value());
+			map.put("login", false);
+			return new ResponseEntity<Object>(map,status);
+		}
+		
+	}
+	
+	public static ResponseEntity<Object> orderResponse(String message, HttpStatusCode status, Object responseObj){
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		if(responseObj != null && (responseObj instanceof Orders)) {
+			map.put("message", message);
+			map.put("status", status.value());
+			map.put("orderId", true);
+			return new ResponseEntity<Object>(map,status);
+		}else {
+			map.put("message", "Inactive data!");
+			map.put("status", status.value());
+			map.put("orderId", null);
+			return new ResponseEntity<Object>(map,status);
+		}
+		
+	}
 }

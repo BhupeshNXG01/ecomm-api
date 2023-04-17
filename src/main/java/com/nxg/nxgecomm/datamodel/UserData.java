@@ -11,11 +11,11 @@ public class UserData implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "user_id")
+	private int userId;
 	
 	@Column(name = "seller_id")
-	private int seller_id;
+	private int sellerId;
 	
 	@Column(name = "email")
 	private String email;
@@ -30,30 +30,30 @@ public class UserData implements Serializable {
 	private String password;
 	
 	@Column(name = "seller_password")
-	private String seller_password;
+	private String sellerPassword;
 	
 	
 	@Column(name = "status")
 	private int status;
 
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 
 	public int getSeller_id() {
-		return seller_id;
+		return sellerId;
 	}
 
 
-	public void setSeller_id(int seller_id) {
-		this.seller_id = seller_id;
+	public void setSellerId(int sellerId) {
+		this.sellerId = sellerId;
 	}
 
 
@@ -97,13 +97,13 @@ public class UserData implements Serializable {
 	}
 
 
-	public String getSeller_password() {
-		return seller_password;
+	public String getSellerPassword() {
+		return sellerPassword;
 	}
 
 
-	public void setSeller_password(String seller_password) {
-		this.seller_password = seller_password;
+	public void setSellerPassword(String sellerPassword) {
+		this.sellerPassword = sellerPassword;
 	}
 
 

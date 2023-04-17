@@ -1,134 +1,162 @@
 package com.nxg.nxgecomm.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import com.nxg.nxgecomm.api.model.User;
+import com.nxg.nxgecomm.api.model.UserRes;
 import com.nxg.nxgecomm.datamodel.UserData;
 import com.nxg.nxgecomm.repository.UserRepository;
 
+@Service
 public class UserService {
+
 	
 	UserData UserData;
 	
-Optional<UserData> UserDataOp;
+	Optional<UserData> UserDataOp;
 	
 	@Autowired
-	UserRepository userRepository;
+	UserRepository UserRepository;
 	
-public User createUser(User user) throws Exception{
+	private UserRes setResData(UserData userData) {
+	      UserRes userRes = new UserRes();
 		
-		UserData userData = new userData();
+	      userRes.setUserId(userRes.getUserId());
+	      userRes.setUsername(userRes.getUsername());
+	    
+	      userRes.setEmail(userRes.getEmail());
+	      userRes.setMobile(userRes.getMobile());
+	      userRes.setSellerId(userRes.getSellerId());
+	      userRes.setSellerPassword(userRes.getSellerPassword());
+	    return userRes;
+	
+	}
+	
+public UserRes createUser(User user) throws Exception{
+		
+		UserData userData = new UserData();
 		
 		try {
 			userData.setEmail(user.getEmail());
 			userData.setUsername(user.getUsername());
 			userData.setMobile(user.getMobile());
+			userData.setSellerId(user.getSellerId());
 			userData.setPassword(user.getPassword());
-			userData.setSeller_id(user.getSeller_id());
-			userData.setSeller_password(user.getSeller_password());
+			userData.setSellerPassword(user.getSellerPassword());
 			userData.setStatus(1);
-			userData = userRepository.save(userData);
-			user.setId(userData.getId());
-			return user;
-		}catch(ResponseStatusException ex) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
-		}
-		
-	} 
-
-public User updateUser(int id, User user) throws Exception{
-	
-	
-	UserDataOp = UserRepository.findByIdAndStatus(id, 1);
-	
-	if(UserDataOp.isPresent()) {
-		
-		try {
-		    UserData userData = UserDataOp.get();
 			
-			userData.setId(user.getId());
-			userData.setSeller_id(user.getSellerId());
-			userData.setEmail(user.getEmail());
-			userData.setUsername(user.getUserName());
-			userData.setMobile(user.getMobile());
-			userData.setPassword(user.getPassword());
-			userData.setSeller_password(user.getSellerPassword());
-			userData.setStatus(1);
 			userData = UserRepository.save(userData);
-			user.setId(userData.getId());
-			return user;
-		}catch(ResponseStatusException ex) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
-		}
+    		System.out.println("This is Id === " + userData.getUserId());
+    		
+    		UserRes userRes = this.setResData(userData);
+    		System.out.println("This is Username === " + userRes.getUsername());
+    		return userRes;
+    	}catch(ResponseStatusException ex) {
+    		throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
+    	}
+    	
+    }
+public List<UserRes> getAlluser() throws ResponseStatusException {
+	List<UserRes> userList = new ArrayList<UserRes>();
+	
+	try {
 		
-	}else {
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
+		List<UserData> UserList = UserRepository.findByStatus(1);
+	
+		if(UserList.size() > 0) {
+    		
+    		for(UserData UserData : UserList) {
+    			UserRes user = new UserRes();
+    			
+    			user.setUsername(UserData.getUsername());
+    			user.setEmail(UserData.getEmail());
+    			user.setMobile(UserData.getMobile());
+    			user.setSellerPassword(UserData.getSellerPassword());
+    			user.setSellerId(UserData.getSeller_id());
+    			user.setUserId(UserData.getUserId());
+    			userList.add(user);
+    			
+    		}
+    		
+    		return userList;
+    		
+    	}else {
+    		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
+    	}
+		
+	}catch(ResponseStatusException ex) {
+		throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR!");
 	}
 	
-	
 }
 
-public User getUserById(int id) throws Exception{
+public UserRes getUserByUserId(int userid) {
 	
+	try {
+		 UserDataOp = UserRepository.findByUserIdAndStatus(userid,1);
 	
-	userDataOp = userRepository.findByIdAndStatus(id, 1);
-	
-	if(userDataOp.isPresent()) {
+		 if(UserDataOp.isPresent()) {
+			 UserData userData = UserDataOp.get();
+			 UserRes user = new UserRes();
+			 
+			 user.setUsername(userData.getUsername());
+			 user.setEmail(userData.getEmail());
+			 user.setMobile(userData.getMobile());
+			 user.setSellerPassword(userData.getSellerPassword());
+			 user.setSellerId(userData.getSeller_id());
+			 user.setUserId(userData.getUserId());
+			 
+			 return user;
+		 }else {
+    		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
+    	}
 		
-		try {
-			UserData userData = userDataOp.get();
-			User user = new User();
-			
-			user.setEmail(userData.getEmail());
-			user.setUsername(userData.getUsername());
-			user.setMobile(userData.getMobile());
-			user.setPassword(userData.getPassword());
-			user.setSeller_id(userData.getSeller_id());
-			user.setSeller_password(userData.getSeller_password());
-			user.setId(userData.getId());
-			
-			return user;
-		}catch(ResponseStatusException ex) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
-		}
-		
-	}else {
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
-	}	
-}
-
-public List<User> getAllUser() throws Exception {
-	
-	List<User> userList = new ArrayList<User>();
-	List<UserData> userDataList = UserRepository.findByStatus(1);
-	
-	if(userDataList.size() > 0) {
-		
-		try {
-			for(UserData userData: userDataList) {
-				User user = new User();
-				
-				user.setId(userData.getId());
-				user.setSellerId(userData.getSeller_id());
-				user.setEmail(userData.getEmail());
-				user.setUsername(userData.getUsername());
-				user.setMobile(userData.getMobile());
-				user.setPassword(userData.getPassword());
-				user.setSellerPassword(userData.getSeller_password());
-				user.setStatus(userData.getStatus());
-				userList.add(user);
-			}
-			return userList;
-		}catch(ResponseStatusException ex) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
-		}
-		
-	}else {
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
+	}catch(ResponseStatusException ex) {
+		throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR!");
 	}
+	
+}
+
+public UserRes updateUser(int UserId,User user) throws Exception{
+	
+  	 UserData = new UserData();
+  
+  	try {
+  		UserDataOp = UserRepository.findByUserIdAndStatus(UserId, 1);
+  		if(UserDataOp.isPresent()) {
+  			UserData UserData = UserDataOp.get();
+  			UserData.setUsername(user.getUsername());
+  			UserData.setEmail(user.getEmail());
+  			UserData.setMobile(user.getMobile());
+  			UserData.setPassword(user.getPassword());
+  			UserData.setSellerPassword(user.getSellerPassword());
+  			UserData.setSellerId(user.getSellerId());
+  			
+  			UserData = UserRepository.save(UserData);
+  			UserRes userRes = this.setResData(UserData);
+  			return userRes;
+  		}else {
+  			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
+  		}
+  		
+  	}catch(ResponseStatusException ex) {
+  		throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
+  	}
+  	
+  }
 
 
+
+
+   
 }
-}
+

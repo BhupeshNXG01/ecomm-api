@@ -1,10 +1,10 @@
 package com.nxg.nxgecomm.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import com.nxg.nxgecomm.api.model.User;
+import com.nxg.nxgecomm.api.model.UserRes;
 import com.nxg.nxgecomm.service.UserService;
 
 @RestController
@@ -27,7 +29,7 @@ public class UserController {
 	ResponseEntity<Object> addUser(@RequestBody User user) throws Exception {
 		try {
 			
-	        User userRes = userService.createUser(user);
+	        UserRes userRes = userService.createUser(user);
 			return new ResponseEntity<>(userRes,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
@@ -35,11 +37,11 @@ public class UserController {
 		
 	}
 	
-	@PutMapping(value = "/user/{id}", consumes = "application/json", produces = "application/json")
-	ResponseEntity<Object> updateUser(@PathVariable("id") int id, @RequestBody User user) throws Exception {
+	@PutMapping(value = "/user/{user_id}", consumes = "application/json", produces = "application/json")
+	ResponseEntity<Object> updateUser(@PathVariable("user_id") int userId, @RequestBody User user) throws Exception {
 		try {
 			
-			User userRes = userService.updateUser(id,user);
+			UserRes userRes = userService.updateUser(userId,user);
 			return new ResponseEntity<>(userRes,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
@@ -51,7 +53,7 @@ public class UserController {
 	ResponseEntity<Object> getUser() throws Exception {
 		try {
 			
-			List<user> userResList = userService.getAllUser();
+			List<UserRes> userResList = userService.getAlluser();
 			return new ResponseEntity<>(userResList,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
@@ -59,28 +61,18 @@ public class UserController {
 		
 	}
 	
-	@GetMapping(value = "/user/{id}")
-	ResponseEntity<Object> getUser(@PathVariable("id") int id) throws Exception {
+	@GetMapping(value = "/user/{user_id}")
+	ResponseEntity<Object> getUser(@PathVariable("user_id") int user_id) throws Exception {
 		try {
 			
-			User userRes = userService.getUserById(id);
+			UserRes userRes = userService.getUserByUserId(user_id);
 			return new ResponseEntity<>(userRes,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
 		}
 		
 	}
+
 	
-	@DeleteMapping(value = "/user/{id}")
-	ResponseEntity<Object> deleteUser(@PathVariable("id") int id) throws Exception {
-		try {
-			
-			User userRes = userService.deleteUser(id);
-			return new ResponseEntity<>(userRes,HttpStatus.OK);
-		}catch(ResponseStatusException ex) {
-			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
-		}
-		
-	}
 
 }

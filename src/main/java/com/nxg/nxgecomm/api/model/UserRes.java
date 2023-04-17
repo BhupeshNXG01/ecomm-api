@@ -10,11 +10,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * User
+ * UserRes
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-17T15:37:12.436501300+05:30[Asia/Calcutta]")
 
-public class User   {
+public class UserRes   {
   @JsonProperty("user_id")
   private Integer userId;
 
@@ -30,13 +30,10 @@ public class User   {
   @JsonProperty("mobile")
   private Integer mobile;
 
-  @JsonProperty("password")
-  private String password;
-
   @JsonProperty("seller_password")
   private String sellerPassword;
 
-  public User userId(Integer userId) {
+  public UserRes userId(Integer userId) {
     this.userId = userId;
     return this;
   }
@@ -45,8 +42,7 @@ public class User   {
    * Get userId
    * @return userId
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=11) 
   public Integer getUserId() {
@@ -57,7 +53,7 @@ public class User   {
     this.userId = userId;
   }
 
-  public User sellerId(Integer sellerId) {
+  public UserRes sellerId(Integer sellerId) {
     this.sellerId = sellerId;
     return this;
   }
@@ -66,8 +62,7 @@ public class User   {
    * Get sellerId
    * @return sellerId
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=11) 
   public Integer getSellerId() {
@@ -78,7 +73,7 @@ public class User   {
     this.sellerId = sellerId;
   }
 
-  public User email(String email) {
+  public UserRes email(String email) {
     this.email = email;
     return this;
   }
@@ -87,8 +82,7 @@ public class User   {
    * Get email
    * @return email
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=200) 
   public String getEmail() {
@@ -99,7 +93,7 @@ public class User   {
     this.email = email;
   }
 
-  public User username(String username) {
+  public UserRes username(String username) {
     this.username = username;
     return this;
   }
@@ -108,8 +102,7 @@ public class User   {
    * Get username
    * @return username
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=100) 
   public String getUsername() {
@@ -120,7 +113,7 @@ public class User   {
     this.username = username;
   }
 
-  public User mobile(Integer mobile) {
+  public UserRes mobile(Integer mobile) {
     this.mobile = mobile;
     return this;
   }
@@ -129,8 +122,7 @@ public class User   {
    * Get mobile
    * @return mobile
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=10) 
   public Integer getMobile() {
@@ -141,28 +133,7 @@ public class User   {
     this.mobile = mobile;
   }
 
-  public User password(String password) {
-    this.password = password;
-    return this;
-  }
-
-  /**
-   * Get password
-   * @return password
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-@Size(max=200) 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public User sellerPassword(String sellerPassword) {
+  public UserRes sellerPassword(String sellerPassword) {
     this.sellerPassword = sellerPassword;
     return this;
   }
@@ -171,8 +142,7 @@ public class User   {
    * Get sellerPassword
    * @return sellerPassword
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 @Size(max=200) 
   public String getSellerPassword() {
@@ -192,32 +162,30 @@ public class User   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
-    return Objects.equals(this.userId, user.userId) &&
-        Objects.equals(this.sellerId, user.sellerId) &&
-        Objects.equals(this.email, user.email) &&
-        Objects.equals(this.username, user.username) &&
-        Objects.equals(this.mobile, user.mobile) &&
-        Objects.equals(this.password, user.password) &&
-        Objects.equals(this.sellerPassword, user.sellerPassword);
+    UserRes userRes = (UserRes) o;
+    return Objects.equals(this.userId, userRes.userId) &&
+        Objects.equals(this.sellerId, userRes.sellerId) &&
+        Objects.equals(this.email, userRes.email) &&
+        Objects.equals(this.username, userRes.username) &&
+        Objects.equals(this.mobile, userRes.mobile) &&
+        Objects.equals(this.sellerPassword, userRes.sellerPassword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, sellerId, email, username, mobile, password, sellerPassword);
+    return Objects.hash(userId, sellerId, email, username, mobile, sellerPassword);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class User {\n");
+    sb.append("class UserRes {\n");
     
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    sellerId: ").append(toIndentedString(sellerId)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    mobile: ").append(toIndentedString(mobile)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    sellerPassword: ").append(toIndentedString(sellerPassword)).append("\n");
     sb.append("}");
     return sb.toString();

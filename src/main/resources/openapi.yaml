@@ -386,13 +386,13 @@ paths:
         '502':
           description: Bad Gatway
       x-codegen-request-body-name: body
-  /user/{id}:
+  /user/{user_id}:
     get:
       tags:
         - User Information
       summary: Getting user details by id
       parameters:
-      - name: id
+      - name: user_id
         in: path
         required: true
         schema:
@@ -424,7 +424,7 @@ paths:
           - User Information
         summary: Editing user details
         parameters:
-        - name: id
+        - name: user_id
           in: path
           required: true
           schema:
@@ -458,6 +458,316 @@ paths:
           '502':
             description: Bad Gatway
         x-codegen-request-body-name: body
+  
+  /orderproducts:
+    post:
+      tags:
+        - Order Products Information
+      summary: Adding a new Order Products
+      requestBody:
+        description: Order Products details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderProducts'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - Order Products Information
+      summary:  Getting all Order Products details
+      responses:
+        '200':
+          description:  A list of all Order Products details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/OrderProducts'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /orderproducts/{orderId}:
+    get:
+      tags:
+        - Order Products Information
+      summary: Getting Order Products details by id
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a order Products details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/OrderProducts'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - Order Products Information
+        summary: Editing Order Products details
+        parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: Order Products details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/OrderProducts'
+          required: true      
+        responses:
+          '200':
+            description: A list of a Order Products details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/OrderProducts'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body  
+    delete:
+      tags:
+        - Order Products Information 
+      summary: Delete a Order Products
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+
+  /orders:
+    post:
+      tags:
+        - Orders Information
+      summary: Adding a new Orders
+      requestBody:
+        description: Orders details that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Orders'
+        required: true
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body
+    get:
+      tags:
+        - Orders Information
+      summary:  Getting all Orders  details
+      responses:
+        '200':
+          description:  A list of all Orders details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Orders'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body
+  /orders/{orderId}:
+    get:
+      tags:
+        - Orders Information
+      summary: Getting Orders details by id
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of a orders details
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Orders'
+        '201':
+          description: Successful
+          content: {}
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}
+        '502':
+          description: Bad Gatway
+      x-codegen-request-body-name: body   
+    put:
+        tags:
+          - Orders Information
+        summary: Editing Orders details
+        parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+        requestBody:
+          description: Orders details that need to be added
+          content:
+            applicantion/json:
+              schema:
+                $ref: '#/components/schemas/Orders'
+          required: true      
+        responses:
+          '200':
+            description: A list of a Orders details
+            content:
+              applicantion/json:
+                schema:
+                  $ref: '#/components/schemas/Orders'
+          '201':
+            description: Successful
+            content: {}
+          '400':
+            description: Bad request input
+            content: {}
+          '404':
+            description: Data not found
+            content: {}
+          '500':
+            description: Invalid input
+            content: {}
+          '502':
+            description: Bad Gatway
+        x-codegen-request-body-name: body  
+    delete:
+      tags:
+        - Orders Information 
+      summary: Delete a Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Successful
+          content: {}      
+        '400':
+          description: Bad request input
+          content: {}
+        '404':
+          description: Data not found
+          content: {}
+        '500':
+          description: Invalid input
+          content: {}          
+        '502':
+          description: Bad Gatway
+          content: {}               
+      x-codegen-request-body-name: body        
       
   
 components:
@@ -541,15 +851,20 @@ components:
     User:
       type: object
       required:
-        - id
+        - user_id
+        - seller_id
         - email
         - username
         - mobile
         - password
+        - seller_password
       properties:
-        id:
+        user_id:
           type: integer
           maxLength: 11
+        seller_id:
+          type: integer
+          maxLength: 11  
         email:
           type: string
           maxLength: 200
@@ -561,4 +876,176 @@ components:
           maxLength: 10
         password:
           type: string
+          maxLength: 200
+        seller_password:
+          type: string
+          maxLength: 200
+    UserRes:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          maxLength: 11
+        seller_id:
+          type: integer
+          maxLength: 11  
+        email:
+          type: string
+          maxLength: 200
+        username:
+          type: string
+          maxLength: 100
+        mobile:
+          type: integer
+          maxLength: 10
+        seller_password:
+          type: string
+          maxLength: 200
+    UserLogin:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          maxLength: 200
+        password:
+          type: string
           maxLength: 200      
+    OrderProducts:
+      type: object
+      required:
+        - orderProductId
+        - productId
+        - rowId
+        - quantity
+        - amount
+        - status
+      properties:
+        orderProductId:
+          type: integer
+          maxLength: 10
+        productId:
+          type: integer
+          maxLength: 11  
+        quantity:
+          type: integer
+          maxLength: 10
+        amount:
+          type: integer
+          maxLength: 100
+        rowId:
+          type: integer
+          maxLength: 10
+        status:
+          type: integer
+          maxLength: 10   
+    Orders:
+      type: object
+      required:
+        - orderId
+        - shipmentId
+        - shiprocketOrderId
+        - paymentStatus
+        - paymentMode
+        - paymentId
+        - fulfilmentStatus
+        - shipingMode
+        - shippingAddId
+        - billingAddId 
+        - orderTotal 
+        - discountAmount
+        - discountType 
+        - itemTotal  
+        - taxPercent 
+        - taxPrice 
+        - shipingPrice 
+        - totalAmount 
+        - customerId 
+        - discountId 
+        - cartSession 
+        - pickupAddressId
+        - status
+        - isDelivered
+        - cancelStatus
+      properties:
+        orderId:
+          type: integer
+          maxLength: 11
+        shipmentId:
+          type: integer
+          maxLength: 11
+        shiprocketOrderId:
+          type: integer
+          maxLength: 11
+        paymentStatus:
+          type: integer
+          maxLength: 11
+        paymentMode:
+          type: string
+          maxLength: 200 
+        paymentId:
+          type: string
+          maxLength: 200
+        fulfilmentStatus:
+          type: integer
+          maxLength: 11
+        shipingMode:
+          type: integer
+          maxLength: 11
+        shippingAddId:
+          type: integer
+          maxLength: 11
+        billingAddId:
+          type: integer
+          maxLength: 11
+        orderTotal:
+          type: integer
+          maxLength: 11
+        discountAmount:
+          type: integer
+          maxLength: 11 
+        discountType:
+          type: integer
+          maxLength: 11
+        itemTotal:
+          type: integer
+          maxLength: 11
+        taxPercent:
+          type: integer
+          maxLength: 11
+        taxPrice:
+          type: integer
+          maxLength: 11
+        shipingPrice:
+          type: integer
+          maxLength: 11
+        totalAmount:
+          type: integer
+          maxLength: 11
+        customerId:
+          type: integer
+          maxLength: 11
+        discountId:
+          type: integer
+          maxLength: 11
+        cartSession:
+          type: string
+          maxLength: 200
+        pickupAddressId:
+          type: integer
+          maxLength: 11
+        status:
+          type: integer
+          maxLength: 11
+        isDelivered:
+          type: integer
+          maxLength: 11
+        cancelStatus:
+          type: integer
+          maxLength: 11
+        orderProducts:
+          type: array
+          items:
+           $ref: '#/components/schemas/OrderProducts'
