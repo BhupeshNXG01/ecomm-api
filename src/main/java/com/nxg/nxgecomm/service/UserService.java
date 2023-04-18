@@ -154,9 +154,5 @@ public UserRes updateUser(int UserId,User user) throws Exception{
   	
   }
 
-
-
-
-   
 }
 
