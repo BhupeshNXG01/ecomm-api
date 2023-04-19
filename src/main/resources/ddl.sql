@@ -529,11 +529,11 @@ CREATE TABLE `orders` (
   `customer_id` int NOT NULL,
   `discount_id` int NOT NULL,
   `cart_session` varchar(200) NOT NULL,
-  `paid_date` date NOT NULL,
-  `fulfilled_at` date NOT NULL,
+  `paid_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fulfilled_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pickup_address_id` int NOT NULL,
   `status` int NOT NULL,
-  `isDelivered` int DEFAULT '0' COMMENT '0 as created, 1 as Dispatched , 2 as Delivered',
+  `is_delivered` int DEFAULT '0' COMMENT '0 as created, 1 as Dispatched , 2 as Delivered',
   `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `cancel_status` int NOT NULL,
   PRIMARY KEY (`order_id`),
@@ -626,7 +626,7 @@ CREATE TABLE `discount_products` (
 -- Table structure for table `order_products`
 DROP TABLE IF EXISTS `order_products`;
 CREATE TABLE `order_products` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `order_product_id` int NOT NULL AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `product_id` varchar(200) NOT NULL,
   `row_id` text,
