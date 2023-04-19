@@ -636,7 +636,7 @@ CREATE TABLE `order_products` (
   `feedback_status` int DEFAULT NULL,
   `status` int DEFAULT NULL,
   `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`order_product_id`),
   KEY `product_id` (`product_id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_products_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
