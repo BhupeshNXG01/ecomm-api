@@ -32,11 +32,11 @@ public class UserService {
 		
 	      userRes.setUserId(userRes.getUserId());
 	      userRes.setUsername(userRes.getUsername());
-	    
 	      userRes.setEmail(userRes.getEmail());
 	      userRes.setMobile(userRes.getMobile());
 	      userRes.setSellerId(userRes.getSellerId());
 	      userRes.setSellerPassword(userRes.getSellerPassword());
+	      userRes.setStatus(userRes.getStatus());
 	    return userRes;
 	
 	}
@@ -52,7 +52,7 @@ public UserRes createUser(User user) throws Exception{
 			userData.setSellerId(user.getSellerId());
 			userData.setPassword(user.getPassword());
 			userData.setSellerPassword(user.getSellerPassword());
-			userData.setStatus(1);
+			userData.setStatus("active");
 			
 			userData = UserRepository.save(userData);
     		System.out.println("This is Id === " + userData.getUserId());
@@ -70,7 +70,7 @@ public List<UserRes> getAlluser() throws ResponseStatusException {
 	
 	try {
 		
-		List<UserData> UserList = UserRepository.findByStatus(1);
+		List<UserData> UserList = UserRepository.findByStatus("active");
 	
 		if(UserList.size() > 0) {
     		
@@ -83,6 +83,7 @@ public List<UserRes> getAlluser() throws ResponseStatusException {
     			user.setSellerPassword(UserData.getSellerPassword());
     			user.setSellerId(UserData.getSeller_id());
     			user.setUserId(UserData.getUserId());
+    			user.setStatus(UserData.getStatus());
     			userList.add(user);
     			
     		}
@@ -102,7 +103,7 @@ public List<UserRes> getAlluser() throws ResponseStatusException {
 public UserRes getUserByUserId(int userid) {
 	
 	try {
-		 UserDataOp = UserRepository.findByUserIdAndStatus(userid,1);
+		 UserDataOp = UserRepository.findByUserIdAndStatus(userid,"active");
 	
 		 if(UserDataOp.isPresent()) {
 			 UserData userData = UserDataOp.get();
@@ -114,6 +115,7 @@ public UserRes getUserByUserId(int userid) {
 			 user.setSellerPassword(userData.getSellerPassword());
 			 user.setSellerId(userData.getSeller_id());
 			 user.setUserId(userData.getUserId());
+			 user.setStatus(userData.getStatus());
 			 
 			 return user;
 		 }else {
@@ -131,7 +133,7 @@ public UserRes updateUser(int UserId,User user) throws Exception{
   	 UserData = new UserData();
   
   	try {
-  		UserDataOp = UserRepository.findByUserIdAndStatus(UserId, 1);
+  		UserDataOp = UserRepository.findByUserIdAndStatus(UserId, "active");
   		if(UserDataOp.isPresent()) {
   			UserData UserData = UserDataOp.get();
   			UserData.setUsername(user.getUsername());
@@ -140,6 +142,7 @@ public UserRes updateUser(int UserId,User user) throws Exception{
   			UserData.setPassword(user.getPassword());
   			UserData.setSellerPassword(user.getSellerPassword());
   			UserData.setSellerId(user.getSellerId());
+  			UserData.setStatus(user.getStatus());
   			
   			UserData = UserRepository.save(UserData);
   			UserRes userRes = this.setResData(UserData);

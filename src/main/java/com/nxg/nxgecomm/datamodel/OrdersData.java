@@ -90,7 +90,7 @@ public class OrdersData implements Serializable{
 	private int pickupAddressId;
 	
 	@Column(name = "status")
-	private int status;
+	private String status;
 	
 	@Column(name = "is_delivered")
 	private int isDelivered;
@@ -293,11 +293,11 @@ public class OrdersData implements Serializable{
 		this.pickupAddressId = pickupAddressId;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

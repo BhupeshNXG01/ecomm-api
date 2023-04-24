@@ -1,6 +1,7 @@
 package com.nxg.nxgecomm.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import com.nxg.nxgecomm.datamodel.OrderProductsData;
 import com.nxg.nxgecomm.datamodel.OrdersData;
 import com.nxg.nxgecomm.repository.OrderProductsRepository;
 import com.nxg.nxgecomm.repository.OrdersRepository;
+
+import jakarta.transaction.Status;
 
 @Service
 public class OrdersService {
@@ -80,13 +83,13 @@ public class OrdersService {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
 		}
 		
-		
+//		"!deleted"
 	}
 	
 	public List<Orders> getAllOrders() throws Exception {
 		
 		List<Orders> orderList = new ArrayList<Orders>();
-		List<OrdersData> ordersDataList = orderRepository.findByStatus(1);
+		List<OrdersData> ordersDataList = orderRepository.findByStatusIn(Arrays.asList("active", "inactive"));
 		if(ordersDataList.size() > 0) {
 			
 			try {
@@ -158,7 +161,7 @@ public List<Orders> getOrdersById(int id) throws Exception{
 	
 	ArrayList<Orders> orderList = new ArrayList<Orders>();
 	orderDataOp = orderRepository.findByOrderId(id);
-	orderProductDataOp = orderProductsRepository.findByOrderProductIdAndStatus(id,1);
+	orderProductDataOp = orderProductsRepository.findByOrderProductIdAndStatus(id,"active");
     if(orderDataOp.isPresent()) {
 		
     	try {
@@ -231,11 +234,14 @@ public Orders updateOrders(int id, Orders orders) throws Exception{
     orderDataOp = orderRepository.findByOrderId(id);
     orderProductDataOp = orderProductsRepository.findByOrderProductId(id);
     
-    if(orderDataOp.isPresent() && orderProductDataOp.isPresent()) {
-        
+    if(orderDataOp.isPresent() && orderProductDataOp.isPresent() ) {
         try {
             OrdersData orderData = orderDataOp.get();
             OrderProductsData orderProductData = orderProductDataOp.get();
+            
+            if(orderData.getStatus().equals("deleted")) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "deleted status can't be active or inactive");
+                } 
             
             orderData.setShiprocketOrderId(orders.getShiprocketOrderId());
             orderData.setPaymentStatus(orders.getPaymentStatus());
@@ -264,7 +270,9 @@ public Orders updateOrders(int id, Orders orders) throws Exception{
             orders.setOrderId(orderData.getOrderId());
             
             OrderProducts orderproducts = orders.getOrderProducts().get(0);
-            
+            if(orderProductData.getStatus().equals("deleted")) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "deleted status can't be active or inactiv");
+                } 
             orderProductData.setProductId(orderproducts.getProductId());
             orderProductData.setRowId(orderproducts.getRowId());        
             orderProductData.setQuantity(orderproducts.getQuantity());
@@ -278,11 +286,13 @@ public Orders updateOrders(int id, Orders orders) throws Exception{
             
             orders.setOrderProducts(orderProductsList);
             
+    
             return orders;
+            
         } catch(ResponseStatusException ex) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR");
         }
-        
+          
     } else {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Data not found!");
     }
@@ -295,17 +305,17 @@ public Orders deleteOrders(int id) throws Exception{
 	List<OrderProductsData> ordersProductsDataList = new ArrayList<OrderProductsData>();
 
 
-	Optional<OrdersData> orderDataOp = orderRepository.findByOrderIdAndStatus(id, 1);
-	Optional<OrderProductsData> orderProductDataOp = orderProductsRepository.findByOrderProductIdAndStatus(id, 1) ;
+	Optional<OrdersData> orderDataOp = orderRepository.findByOrderIdAndStatus(id, "active");
+	Optional<OrderProductsData> orderProductDataOp = orderProductsRepository.findByOrderProductIdAndStatus(id, "active") ;
 	if(orderDataOp.isPresent()) {
 		
 		try {
 			OrdersData orderData = orderDataOp.get();
-			orderData.setStatus(0);
+			orderData.setStatus("deleted");
 			orderData = orderRepository.save(orderData);
 			
 			OrderProductsData orderProductData = orderProductDataOp.get();
-			orderProductData.setStatus(0);
+			orderProductData.setStatus("deleted");
 			orderProductData = orderProductsRepository.save(orderProductData);
 			
 			Orders orders = new Orders();

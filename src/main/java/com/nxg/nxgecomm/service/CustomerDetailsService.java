@@ -50,7 +50,7 @@ public class CustomerDetailsService {
     		customerDetailsData.setPassword(customerDetails.getPassword());
     		customerDetailsData.setIsGuest(customerDetails.getIsGuest());
     		customerDetailsData.setCurrencyId(customerDetails.getCurrencyId());
-    		customerDetailsData.setStatus(1);
+    		customerDetailsData.setStatus("active");
     		
     		customerDetailsData = customerDetailsRepository.save(customerDetailsData);
     		System.out.println("This is Id === " + customerDetailsData.getId());
@@ -68,7 +68,7 @@ public class CustomerDetailsService {
     	
     	try {
     		
-    		List<CustomerDetailsData> CustomerDetailsDataList = customerDetailsRepository.findByStatus(1);
+    		List<CustomerDetailsData> CustomerDetailsDataList = customerDetailsRepository.findByStatus("active");
     	
     		if(CustomerDetailsDataList.size() > 0) {
         		
@@ -101,7 +101,7 @@ public class CustomerDetailsService {
     public CustomerDetailsRes getCustomerDetailsById(int id) {
     	
     	try {
-    		 customerDetailsDataOp = customerDetailsRepository.findByIdAndStatus(id,1);
+    		 customerDetailsDataOp = customerDetailsRepository.findByIdAndStatus(id,"active");
     	
     		 if(customerDetailsDataOp.isPresent()) {
     			 CustomerDetailsData customerDetailsData = customerDetailsDataOp.get();
@@ -131,7 +131,7 @@ public class CustomerDetailsService {
    	 customerDetailsData = new CustomerDetailsData();
    
    	try {
-   		customerDetailsDataOp = customerDetailsRepository.findByIdAndStatus(id, 1);
+   		customerDetailsDataOp = customerDetailsRepository.findByIdAndStatus(id, "active");
    		if(customerDetailsDataOp.isPresent()) {
    			CustomerDetailsData customerDetailsData = customerDetailsDataOp.get();
    			customerDetailsData.setName(customerDetails.getName());

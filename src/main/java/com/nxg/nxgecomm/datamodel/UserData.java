@@ -34,7 +34,17 @@ public class UserData implements Serializable {
 	
 	
 	@Column(name = "status")
-	private int status;
+	private String status;
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 	public int getUserId() {
@@ -107,14 +117,6 @@ public class UserData implements Serializable {
 	}
 
 
-	public int getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
 	
 	

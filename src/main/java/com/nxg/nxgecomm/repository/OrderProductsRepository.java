@@ -8,8 +8,8 @@ import com.nxg.nxgecomm.datamodel.OrderProductsData;
 
 public interface OrderProductsRepository extends JpaRepository<OrderProductsData,Integer>{
 	
-	Optional<OrderProductsData> findByOrderProductIdAndStatus(int orderProductId , int status);
+	Optional<OrderProductsData> findByOrderProductIdAndStatus(int orderProductId , String status);
 	Optional<OrderProductsData> findByOrderProductId(int orderProductId );
-	List<OrderProductsData> findByStatus(int status);
+	List<OrderProductsData> findByStatus(String status);
 
 }

@@ -10,8 +10,8 @@ import com.nxg.nxgecomm.datamodel.UserData;
 
 public interface UserRepository extends JpaRepository<UserData,Integer> {
 
-	Optional<UserData> findByUserIdAndStatus(int user_id, int status);
-	List<UserData> findByStatus(int status);
+	Optional<UserData> findByUserIdAndStatus(int user_id, String status);
+	List<UserData> findByStatus(String status);
 	
 	@Query("Select count(e)>0 from UserData e where e.username=?1 AND e.password=?2")
 	Boolean existsByUsernameAndPassword(String username, String password);

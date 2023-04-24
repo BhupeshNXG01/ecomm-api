@@ -858,6 +858,7 @@ components:
         - mobile
         - password
         - seller_password
+        - status
       properties:
         user_id:
           type: integer
@@ -880,6 +881,9 @@ components:
         seller_password:
           type: string
           maxLength: 200
+        status:
+          type: string
+          maxLength: 20 
     UserRes:
       type: object
       properties:
@@ -901,6 +905,9 @@ components:
         seller_password:
           type: string
           maxLength: 200
+        status:
+          type: string
+          maxLength: 20  
     UserLogin:
       type: object
       required:
@@ -939,8 +946,8 @@ components:
           type: integer
           maxLength: 10
         status:
-          type: integer
-          maxLength: 10   
+          type: string
+          maxLength: 20   
     Orders:
       type: object
       required:
@@ -1037,7 +1044,7 @@ components:
           type: integer
           maxLength: 11
         status:
-          type: integer
+          type: string
           maxLength: 11
         isDelivered:
           type: integer

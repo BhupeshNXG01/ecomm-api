@@ -43,7 +43,7 @@ public class OrderProductsData implements Serializable {
 	private int amount;
 	
 	@Column(name = "status")
-	private int status;
+	private String status;
 	
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -109,11 +109,11 @@ public class OrderProductsData implements Serializable {
 		this.amount = amount;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

@@ -11,7 +11,7 @@ import com.nxg.nxgecomm.datamodel.CustomerDetailsData;
 
 public interface CustomerDetailsRepository extends JpaRepository<CustomerDetailsData,Integer> {
 
-	Optional<CustomerDetailsData> findByIdAndStatus(int id,int status);
+	Optional<CustomerDetailsData> findByIdAndStatus(int id,String status);
 	
-	List<CustomerDetailsData> findByStatus(int status);
+	List<CustomerDetailsData> findByStatus(String status);
 }

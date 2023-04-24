@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 /**
  * Orders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-19T13:12:34.365793400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-24T14:14:37.533751100+05:30[Asia/Calcutta]")
 
 public class Orders   {
   @JsonProperty("orderId")
@@ -85,7 +85,7 @@ public class Orders   {
   private Integer pickupAddressId;
 
   @JsonProperty("status")
-  private Integer status;
+  private String status;
 
   @JsonProperty("isDelivered")
   private Integer isDelivered;
@@ -559,7 +559,7 @@ public class Orders   {
     this.pickupAddressId = pickupAddressId;
   }
 
-  public Orders status(Integer status) {
+  public Orders status(String status) {
     this.status = status;
     return this;
   }
@@ -572,11 +572,11 @@ public class Orders   {
   @NotNull
 
 @Size(max=11) 
-  public Integer getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(Integer status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-19T13:12:34.365793400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-24T14:14:37.533751100+05:30[Asia/Calcutta]")
 
 public class User   {
   @JsonProperty("user_id")
@@ -35,6 +35,9 @@ public class User   {
 
   @JsonProperty("seller_password")
   private String sellerPassword;
+
+  @JsonProperty("status")
+  private String status;
 
   public User userId(Integer userId) {
     this.userId = userId;
@@ -183,6 +186,27 @@ public class User   {
     this.sellerPassword = sellerPassword;
   }
 
+  public User status(String status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+@Size(max=20) 
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -199,12 +223,13 @@ public class User   {
         Objects.equals(this.username, user.username) &&
         Objects.equals(this.mobile, user.mobile) &&
         Objects.equals(this.password, user.password) &&
-        Objects.equals(this.sellerPassword, user.sellerPassword);
+        Objects.equals(this.sellerPassword, user.sellerPassword) &&
+        Objects.equals(this.status, user.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, sellerId, email, username, mobile, password, sellerPassword);
+    return Objects.hash(userId, sellerId, email, username, mobile, password, sellerPassword, status);
   }
 
   @Override
@@ -219,6 +244,7 @@ public class User   {
     sb.append("    mobile: ").append(toIndentedString(mobile)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    sellerPassword: ").append(toIndentedString(sellerPassword)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,7 @@ public class CustomerDetailsData implements Serializable {
 	private String mobile;
 	
 	@Column(name = "status")
-	private int status;
+	private String status;
 
 	public int getId() {
 		return id;
@@ -84,11 +84,11 @@ public class CustomerDetailsData implements Serializable {
 		this.isGuest = isGuest;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
