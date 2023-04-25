@@ -65,7 +65,7 @@ public class ResponseHandler {
 			map.put("orderId", true);
 			return new ResponseEntity<Object>(map,status);
 		}else {
-			map.put("message", "Inactive data!");
+			map.put("message", "Data not Found!");
 			map.put("status", status.value());
 			map.put("orderId", null);
 			return new ResponseEntity<Object>(map,status);
