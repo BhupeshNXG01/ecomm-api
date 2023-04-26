@@ -602,4 +602,292 @@ components:
           maxLength: 200
         password:
           type: string
-          maxLength: 200                                
+          maxLength: 200          
+          
+    Products:
+      type: object
+      required:
+        - productId
+        - categoryId
+        - tax_id
+        - title
+        - sizeType
+        - description
+        - barcode
+        - isVariants
+        - productUrl
+        - metaDescription
+        - seoTitle
+        - searchTerms
+        - status
+      properties:
+        productId:
+          type: integer
+          maxLength: 11
+        categoryId:
+          type: integer
+          maxLength: 11
+        tax_id:
+          type: integer
+          maxLength: 11
+        title:
+          type: string
+          maxLength: 200
+        sizeType:
+          type: integer
+          maxLength: 1  
+        description:
+          type: string
+        barcode:
+          type: string
+        isVariants:
+          type: integer
+          maxLength: 11
+        productUrl:
+          type: string
+        metaDescription:
+          type: string
+          maxLength: 170
+        keyword:
+          type: string
+          maxLength: 200  
+        seo:
+          $ref: '#/components/schemas/Seo'
+        tax:
+          $ref: '#/components/schemas/Tax'
+        stock:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stock'
+        price:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+        productImage:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
+        productVariant:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+            
+    Seo:
+      type: object
+      properties:
+        seoTitle:
+          type: string
+        metaDescription:
+          type: string
+        searchTerms:
+          type: string
+          maxLength: 250
+        status:
+          type: string
+          maxLength: 8    
+          
+    Price:
+      type: object
+      required:
+        - productId
+        - sellPrice
+        - listPrice
+        - currencyCode
+        - status
+      properties:
+        priceId:
+          type: integer
+          maxLength: 11
+        productId:
+          type: integer
+          maxLength: 11  
+        productVariantId:
+          type: integer
+          maxLength: 11
+        sellPrice:
+          type: number
+          format: float
+        listPrice:
+          type: number
+          format: float
+        currencyCode:
+          type: string
+          maxLength: 4
+        status: 
+          type: string
+          maxLength: 8
+          
+    Tax:
+      type: object
+      required:
+        - taxName
+        - taxRate
+        - status
+      properties:
+        taxId:
+          type: integer
+        taxName: 
+          type: string
+          maxLength: 120
+        taxRate:
+          type: number
+          format: float
+        status:
+          type: string
+          
+    Stock:
+      type: object
+      required:
+        - productId
+        - skuCode
+        - quantity
+        - status
+      properties:
+        stockId:
+          type: integer
+        productId:
+          type: integer
+          maxLength: 11
+        productVariantId:
+          type: integer
+          maxLength: 11  
+        skuCode:
+          type: string
+        quantity:
+          type: integer
+          maxLength: 11
+        status:
+          type: string
+          maxLength: 8
+          
+    ProductImage:
+      type: object
+      required:
+        - productId
+        - imageName
+        - url
+        - isPrimary
+        - status
+      properties:
+        productImageId:
+          type: integer
+          maxLength: 11  
+        productId:
+          type: integer
+          maxLength: 11
+        imageName:
+          type: string
+          maxLength: 200
+        url:
+          type: string
+        isPrimary: 
+          type: integer
+        status:
+          type: string
+          maxLength: 8
+          
+    ProductVariant:
+      type: object
+      required:
+        - productVariantId
+        - productId
+        - variantOptionValueId1
+        - variantOptionValueId2
+        - variantCombinationName
+        - barcode
+        - isDefault
+        - status
+      properties:
+        productVariantId:
+          type: integer
+          maxLength: 11
+        productId:
+          type: integer
+          maxLength: 11
+        variantOptionValueId1:
+          type: integer
+          maxLength: 11  
+        variantOptionValueId2:
+          type: integer
+          maxLength: 11  
+        variantCombinationName:
+          type: string
+          maxLength: 120
+        barcode:
+          type: string
+          maxLength: 120
+        isDefault:
+          type: boolean
+        status:
+          type: string
+        productVariantImage:  
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariantImage'
+        variantOption:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantOption'
+    ProductVariantImage:
+      type: object
+      required:
+        - productVariantId
+        - imgUrl
+        - isPrimary
+        - status
+      properties:  
+        variantImageId:
+          type: integer
+          maxLength: 11
+        productVariantId:
+          type: integer
+          maxLength: 11 
+        imgUrl:
+          type: string
+        isPrimary:
+          type: integer
+          maxLength: 1
+        status:
+          type: string
+          maxLength: 8
+    
+    VariantOption:
+      type: object
+      required:
+        - optionName
+        - status
+      properties:
+        variantOptionId:
+          type: integer
+          maxLength: 11
+        optionName:
+          type: string
+          maxLength: 120
+        status:
+          type: string
+          maxLength: 8
+        variantOptionValue:
+          type: array
+          items: 
+            $ref: '#/components/schemas/VariantOptionValue'
+          
+    VariantOptionValue:
+      type: object
+      required:
+        - variantOptionId
+        - optionValue
+        - status
+      properties:
+        variantOptionValueId:
+          type: integer
+          maxLength: 11  
+        variantOptionId:
+          type: integer
+          maxLength: 11
+        optionValue:
+          type: string
+          maxLength: 120
+        status:  
+          type: string
+          maxLength: 8
+        
