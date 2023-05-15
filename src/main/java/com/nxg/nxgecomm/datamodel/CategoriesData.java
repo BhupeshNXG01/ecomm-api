@@ -28,7 +28,7 @@ public class CategoriesData implements Serializable {
 	private String categoryHandle;
 	
 	@Column(name = "status")
-	private int status;
+	private String status;
 
 	public int getId() {
 		return id;
@@ -70,13 +70,15 @@ public class CategoriesData implements Serializable {
 		this.categoryHandle = categoryHandle;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	
 
 	
 	

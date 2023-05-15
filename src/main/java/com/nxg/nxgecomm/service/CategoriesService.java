@@ -26,11 +26,13 @@ public class CategoriesService {
 		CategoriesData categoriesData = new CategoriesData();
 		
 		try {
-			categoriesData.setName(categories.getName());
+			
+			categoriesData.setName(categories.getName().trim());
 			categoriesData.setPosition(categories.getPosition());
-			categoriesData.setImage(categories.getImage());
-			categoriesData.setCategoryHandle(categories.getCategoryHandel());
-			categoriesData.setStatus(1);
+			categoriesData.setImage(categories.getImage().trim());
+			categoriesData.setCategoryHandle(categories.getCategoryHandel().trim());
+			categoriesData.setStatus("active");
+	        
 			categoriesData = categoriesRepository.save(categoriesData);
 			categories.setId(categoriesData.getId());
 			return categories;
@@ -39,40 +41,42 @@ public class CategoriesService {
 		}
 		
 	}
-	
-public Categories updateCategory(int id, Categories categories) throws Exception{
-		
-		
-		categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
-		
-		if(categoriesDataOp.isPresent()) {
-			
-			try {
-				CategoriesData categoriesData = categoriesDataOp.get();
-				
-				categoriesData.setName(categories.getName());
-				categoriesData.setPosition(categories.getPosition());
-				categoriesData.setImage(categories.getImage());
-				categoriesData.setCategoryHandle(categories.getCategoryHandel());
-				categoriesData.setStatus(1);
-				categoriesData = categoriesRepository.save(categoriesData);
-				categories.setId(categoriesData.getId());
-				return categories;
-			}catch(ResponseStatusException ex) {
-				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"INTERNAL_SERVER_ERROR");
-			}
-			
-		}else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");
-		}
-		
-		
+
+	public boolean existsByCategoryName(String Name) {
+	    return categoriesRepository.existsByName(Name);
 	}
+
+public Categories updateCategory(int id, Categories categories) throws Exception {
+    Optional<CategoriesData> categoriesDataOp = categoriesRepository.findByIdAndStatus(id, "active");
+
+    if (categoriesDataOp.isPresent()) {
+        try {
+            CategoriesData categoriesData = categoriesDataOp.get();
+
+            // Update fields other than the name
+            categoriesData.setPosition(categories.getPosition());
+            categoriesData.setImage(categories.getImage());
+            categoriesData.setCategoryHandle(categories.getCategoryHandel());
+            categoriesData.setStatus("active");
+            categoriesData = categoriesRepository.save(categoriesData);
+
+            categories.setId(categoriesData.getId());
+            return categories;
+        } catch (ResponseStatusException ex) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR");
+        }
+    } else {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Data not found!");
+    }
+}
+public boolean checkCategoryExist(String categoryName) {
+	return categoriesRepository.findByName(categoryName).isPresent();
+}
 
 public Categories getCategoryById(int id) throws Exception{
 	
 	
-	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
+	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, "active");
 	
 	if(categoriesDataOp.isPresent()) {
 		
@@ -97,10 +101,11 @@ public Categories getCategoryById(int id) throws Exception{
 	
 }
 
+
 public List<Categories> getAllCategories() throws Exception {
 	
 	List<Categories> categoriesList = new ArrayList<Categories>();
-	List<CategoriesData> categoriesDataList = categoriesRepository.findByStatus(1);
+	List<CategoriesData> categoriesDataList = categoriesRepository.findByStatus("active");
 	
 	if(categoriesDataList.size() > 0) {
 		
@@ -132,14 +137,14 @@ public List<Categories> getAllCategories() throws Exception {
 public Categories deleteCategory(int id) throws Exception{
 	
 	
-	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, 1);
+	categoriesDataOp = categoriesRepository.findByIdAndStatus(id, "active");
 	
 	if(categoriesDataOp.isPresent()) {
 		
 		try {
 			CategoriesData categoriesData = categoriesDataOp.get();
 			
-			categoriesData.setStatus(0);
+			categoriesData.setStatus("inactive");
 			categoriesData = categoriesRepository.save(categoriesData);
 			Categories categories = new Categories();
 			

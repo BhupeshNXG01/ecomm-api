@@ -20,7 +20,7 @@ import com.nxg.nxgecomm.repository.UserRepository;
 public class UserService {
 
 	
-	UserData UserData;
+	UserData userData;
 	
 	Optional<UserData> UserDataOp;
 	
@@ -43,7 +43,7 @@ public class UserService {
 	
 public UserRes createUser(User user) throws Exception{
 		
-		UserData userData = new UserData();
+		userData = new UserData();
 		
 		try {
 			userData.setEmail(user.getEmail());
@@ -130,22 +130,22 @@ public UserRes getUserByUserId(int userid) {
 
 public UserRes updateUser(int UserId,User user) throws Exception{
 	
-  	 UserData = new UserData();
+  	 userData = new UserData();
   
   	try {
   		UserDataOp = UserRepository.findByUserIdAndStatus(UserId, "active");
   		if(UserDataOp.isPresent()) {
-  			UserData UserData = UserDataOp.get();
-  			UserData.setUsername(user.getUsername());
-  			UserData.setEmail(user.getEmail());
-  			UserData.setMobile(user.getMobile());
-  			UserData.setPassword(user.getPassword());
-  			UserData.setSellerPassword(user.getSellerPassword());
-  			UserData.setSellerId(user.getSellerId());
-  			UserData.setStatus(user.getStatus());
+  			UserData userData = UserDataOp.get();
+  			userData.setUsername(user.getUsername());
+  			userData.setEmail(user.getEmail());
+  			userData.setMobile(user.getMobile());
+  			userData.setPassword(user.getPassword());
+  			userData.setSellerPassword(user.getSellerPassword());
+  			userData.setSellerId(user.getSellerId());
+  			userData.setStatus(user.getStatus());
   			
-  			UserData = UserRepository.save(UserData);
-  			UserRes userRes = this.setResData(UserData);
+  			userData = UserRepository.save(userData);
+  			UserRes userRes = this.setResData(userData);
   			return userRes;
   		}else {
   			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Data not found!");

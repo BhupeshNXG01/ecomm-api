@@ -30,27 +30,37 @@ public class CategoriesController {
 	@PostMapping(value = "/category", consumes = "application/json", produces = "application/json")
 	ResponseEntity<Object> addCategory(@RequestBody Categories categories) throws Exception {
 		try {
+			// Check if the category name already exists in the database
+			if(categoriesService.existsByCategoryName(categories.getName())) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Category with the same name already exists");
+			}
 			
 			Categories categoriesRes = categoriesService.createCategory(categories);
 			return new ResponseEntity<>(categoriesRes,HttpStatus.OK);
 		}catch(ResponseStatusException ex) {
 			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
 		}
-		
 	}
+
 	
+
 	@PutMapping(value = "/category/{id}", consumes = "application/json", produces = "application/json")
 	ResponseEntity<Object> updateCategory(@PathVariable("id") int id, @RequestBody Categories categories) throws Exception {
-		try {
-			
-			Categories categoriesRes = categoriesService.updateCategory(id,categories);
-			return new ResponseEntity<>(categoriesRes,HttpStatus.OK);
-		}catch(ResponseStatusException ex) {
-			return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
-		}
-		
+	    try {
+	        Categories existingCategory = categoriesService.getCategoryById(id);
+
+	        // Check if the updated category name already exists in the database
+	        if (!existingCategory.getName().equals(categories.getName()) && categoriesService.checkCategoryExist(categories.getName())) {
+	            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Category with the same name already exists");
+	        }
+
+	        Categories updatedCategory = categoriesService.updateCategory(id, categories);
+	        return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
+	    } catch (ResponseStatusException ex) {
+	        return ResponseHandler.generateResponse(ex.getMessage(), ex.getStatusCode(), null);
+	    }
 	}
-	
+
 	@GetMapping(value = "/category")
 	ResponseEntity<Object> getCategories() throws Exception {
 		try {
