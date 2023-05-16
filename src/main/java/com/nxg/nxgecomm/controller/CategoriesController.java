@@ -31,7 +31,7 @@ public class CategoriesController {
 	ResponseEntity<Object> addCategory(@RequestBody Categories categories) throws Exception {
 		try {
 			// Check if the category name already exists in the database
-			if(categoriesService.existsByCategoryName(categories.getName())) {
+			if(categoriesService.existsByCategoryName(categories.getName().trim())) {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Category with the same name already exists");
 			}
 			
